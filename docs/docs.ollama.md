@@ -1,11 +1,138 @@
    #  [Documentation[lmlmstudio](file:///private/var/containers/Bundle/Application/61352102-115D-4798-934E-1E7EB868B788/stable.app/error_page_loaded.html?url=https://github.com/Web4application/lmlm/edit/main/PromptStudio.html&dontLoad=true)
+   #  [Documentation[lmlmstudio](file:///private/var/containers/Bundle/Application/61352102-115D-4798-934E-1E7EB868B788/stable.app/error_page_loaded.html?url=https://github.com/Web4application/lmlm/edit/main/PromptStudio.html&dontLoad=true)
 
-Fetch the complete documentation index at: https://docs.ollama.com/llms.txt
+# Ollama
 
->  Use this file to discover all available pages before exploring further.
-> Fetch the complete documentation index at: https://docs.ollama.com/llms.txt
- Use this file to discover all available pages before exploring further.
+## Docs
 
+- [Get version](https://docs.ollama.com/api-reference/get-version.md): Retrieve the version of the Ollama
+- [Show model details](https://docs.ollama.com/api-reference/show-model-details.md)
+- [Anthropic compatibility](https://docs.ollama.com/api/anthropic-compatibility.md)
+- [Authentication](https://docs.ollama.com/api/authentication.md)
+- [Generate a chat message](https://docs.ollama.com/api/chat.md): Generate the next chat message in a conversation between a user and an assistant.
+- [Copy a model](https://docs.ollama.com/api/copy.md)
+- [Create a model](https://docs.ollama.com/api/create.md)
+- [Delete a model](https://docs.ollama.com/api/delete.md)
+- [Generate embeddings](https://docs.ollama.com/api/embed.md): Creates vector embeddings representing the input text
+- [Errors](https://docs.ollama.com/api/errors.md)
+- [Generate a response](https://docs.ollama.com/api/generate.md): Generates a response for the provided prompt
+- [Introduction](https://docs.ollama.com/api/introduction.md)
+- [OpenAI compatibility](https://docs.ollama.com/api/openai-compatibility.md)
+- [List running models](https://docs.ollama.com/api/ps.md): Retrieve a list of models that are currently running
+- [Pull a model](https://docs.ollama.com/api/pull.md)
+- [Push a model](https://docs.ollama.com/api/push.md)
+- [Streaming](https://docs.ollama.com/api/streaming.md)
+- [List models](https://docs.ollama.com/api/tags.md): Fetch a list of models and their details
+- [Usage](https://docs.ollama.com/api/usage.md)
+- [Embeddings](https://docs.ollama.com/capabilities/embeddings.md): Generate text embeddings for semantic search, retrieval, and RAG.
+- [Streaming](https://docs.ollama.com/capabilities/streaming.md)
+- [Structured Outputs](https://docs.ollama.com/capabilities/structured-outputs.md)
+- [Thinking](https://docs.ollama.com/capabilities/thinking.md)
+- [Tool calling](https://docs.ollama.com/capabilities/tool-calling.md)
+- [Vision](https://docs.ollama.com/capabilities/vision.md)
+- [Web search](https://docs.ollama.com/capabilities/web-search.md)
+- [CLI Reference](https://docs.ollama.com/cli.md)
+- [Cloud](https://docs.ollama.com/cloud.md)
+- [Context length](https://docs.ollama.com/context-length.md)
+- [Docker](https://docs.ollama.com/docker.md)
+- [FAQ](https://docs.ollama.com/faq.md)
+- [Hardware support](https://docs.ollama.com/gpu.md)
+- [Importing a Model](https://docs.ollama.com/import.md)
+- [Ollama's documentation](https://docs.ollama.com/index.md)
+- [Claude Code](https://docs.ollama.com/integrations/claude-code.md)
+- [Cline](https://docs.ollama.com/integrations/cline.md)
+- [Codex](https://docs.ollama.com/integrations/codex.md)
+- [Droid](https://docs.ollama.com/integrations/droid.md)
+- [Goose](https://docs.ollama.com/integrations/goose.md)
+- [Overview](https://docs.ollama.com/integrations/index.md)
+- [JetBrains](https://docs.ollama.com/integrations/jetbrains.md)
+- [marimo](https://docs.ollama.com/integrations/marimo.md)
+- [n8n](https://docs.ollama.com/integrations/n8n.md)
+- [NemoClaw](https://docs.ollama.com/integrations/nemoclaw.md)
+- [Onyx](https://docs.ollama.com/integrations/onyx.md)
+- [OpenClaw](https://docs.ollama.com/integrations/openclaw.md)
+- [OpenCode](https://docs.ollama.com/integrations/opencode.md)
+- [Pi](https://docs.ollama.com/integrations/pi.md)
+- [Roo Code](https://docs.ollama.com/integrations/roo-code.md)
+- [VS Code](https://docs.ollama.com/integrations/vscode.md)
+- [Xcode](https://docs.ollama.com/integrations/xcode.md)
+- [Zed](https://docs.ollama.com/integrations/zed.md)
+- [Linux](https://docs.ollama.com/linux.md)
+- [macOS](https://docs.ollama.com/macos.md)
+- [Modelfile Reference](https://docs.ollama.com/modelfile.md)
+- [Quickstart](https://docs.ollama.com/quickstart.md)
+- [Troubleshooting](https://docs.ollama.com/troubleshooting.md): How to troubleshoot issues encountered with Ollama
+- [Windows](https://docs.ollama.com/windows.md)
+
+## OpenAPI Specs
+
+- [openapi](https://docs.ollama.com/openapi.yaml)
+
+## Docs
+
+- [Get version](https://docs.ollama.com/api-reference/get-version.md): Retrieve the version of the Ollama
+- [Show model details](https://docs.ollama.com/api-reference/show-model-details.md)
+- [Anthropic compatibility](https://docs.ollama.com/api/anthropic-compatibility.md)
+- [Authentication](https://docs.ollama.com/api/authentication.md)
+- [Generate a chat message](https://docs.ollama.com/api/chat.md): Generate the next chat message in a conversation between a user and an assistant.
+- [Copy a model](https://docs.ollama.com/api/copy.md)
+- [Create a model](https://docs.ollama.com/api/create.md)
+- [Delete a model](https://docs.ollama.com/api/delete.md)
+- [Generate embeddings](https://docs.ollama.com/api/embed.md): Creates vector embeddings representing the input text
+- [Errors](https://docs.ollama.com/api/errors.md)
+- [Generate a response](https://docs.ollama.com/api/generate.md): Generates a response for the provided prompt
+- [Introduction](https://docs.ollama.com/api/introduction.md)
+- [OpenAI compatibility](https://docs.ollama.com/api/openai-compatibility.md)
+- [List running models](https://docs.ollama.com/api/ps.md): Retrieve a list of models that are currently running
+- [Pull a model](https://docs.ollama.com/api/pull.md)
+- [Push a model](https://docs.ollama.com/api/push.md)
+- [Streaming](https://docs.ollama.com/api/streaming.md)
+- [List models](https://docs.ollama.com/api/tags.md): Fetch a list of models and their details
+- [Usage](https://docs.ollama.com/api/usage.md)
+- [Embeddings](https://docs.ollama.com/capabilities/embeddings.md): Generate text embeddings for semantic search, retrieval, and RAG.
+- [Streaming](https://docs.ollama.com/capabilities/streaming.md)
+- [Structured Outputs](https://docs.ollama.com/capabilities/structured-outputs.md)
+- [Thinking](https://docs.ollama.com/capabilities/thinking.md)
+- [Tool calling](https://docs.ollama.com/capabilities/tool-calling.md)
+- [Vision](https://docs.ollama.com/capabilities/vision.md)
+- [Web search](https://docs.ollama.com/capabilities/web-search.md)
+- [CLI Reference](https://docs.ollama.com/cli.md)
+- [Cloud](https://docs.ollama.com/cloud.md)
+- [Context length](https://docs.ollama.com/context-length.md)
+- [Docker](https://docs.ollama.com/docker.md)
+- [FAQ](https://docs.ollama.com/faq.md)
+- [Hardware support](https://docs.ollama.com/gpu.md)
+- [Importing a Model](https://docs.ollama.com/import.md)
+- [Ollama's documentation](https://docs.ollama.com/index.md)
+- [Claude Code](https://docs.ollama.com/integrations/claude-code.md)
+- [Cline](https://docs.ollama.com/integrations/cline.md)
+- [Codex](https://docs.ollama.com/integrations/codex.md)
+- [Droid](https://docs.ollama.com/integrations/droid.md)
+- [Goose](https://docs.ollama.com/integrations/goose.md)
+- [Overview](https://docs.ollama.com/integrations/index.md)
+- [JetBrains](https://docs.ollama.com/integrations/jetbrains.md)
+- [marimo](https://docs.ollama.com/integrations/marimo.md)
+- [n8n](https://docs.ollama.com/integrations/n8n.md)
+- [NemoClaw](https://docs.ollama.com/integrations/nemoclaw.md)
+- [Onyx](https://docs.ollama.com/integrations/onyx.md)
+- [OpenClaw](https://docs.ollama.com/integrations/openclaw.md)
+- [OpenCode](https://docs.ollama.com/integrations/opencode.md)
+- [Pi](https://docs.ollama.com/integrations/pi.md)
+- [Roo Code](https://docs.ollama.com/integrations/roo-code.md)
+- [VS Code](https://docs.ollama.com/integrations/vscode.md)
+- [Xcode](https://docs.ollama.com/integrations/xcode.md)
+- [Zed](https://docs.ollama.com/integrations/zed.md)
+- [Linux](https://docs.ollama.com/linux.md)
+- [macOS](https://docs.ollama.com/macos.md)
+- [Modelfile Reference](https://docs.ollama.com/modelfile.md)
+- [Quickstart](https://docs.ollama.com/quickstart.md)
+- [Troubleshooting](https://docs.ollama.com/troubleshooting.md): How to troubleshoot issues encountered with Ollama
+- [Windows](https://docs.ollama.com/windows.md)
+
+## OpenAPI Specs
+
+- [openapi](https://docs.ollama.com/openapi.yaml)
+- 
 ## Cloud Models
 
 Ollama's cloud models are a new kind of model in Ollama that can run without a powerful GPU. Instead, cloud models are automatically offloaded to Ollama's cloud service while offering the same capabilities as local models, making it possible to keep using your local tools while running larger models that wouldn't fit on a personal computer.
@@ -1390,13 +1517,76 @@ available_functions = {
 }
 # directly pass the function as part of the tools list
 response = chat(model='qwen3', messages=messages, tools=available_functions.values(), think=True)
-``
+```
+
+## Docs
+
+- [Get version](https://docs.ollama.com/api-reference/get-version.md): Retrieve the version of the Ollama
+- [Show model details](https://docs.ollama.com/api-reference/show-model-details.md)
+- [Anthropic compatibility](https://docs.ollama.com/api/anthropic-compatibility.md)
+- [Authentication](https://docs.ollama.com/api/authentication.md)
+- [Generate a chat message](https://docs.ollama.com/api/chat.md): Generate the next chat message in a conversation between a user and an assistant.
+- [Copy a model](https://docs.ollama.com/api/copy.md)
+- [Create a model](https://docs.ollama.com/api/create.md)
+- [Delete a model](https://docs.ollama.com/api/delete.md)
+- [Generate embeddings](https://docs.ollama.com/api/embed.md): Creates vector embeddings representing the input text
+- [Errors](https://docs.ollama.com/api/errors.md)
+- [Generate a response](https://docs.ollama.com/api/generate.md): Generates a response for the provided prompt
+- [Introduction](https://docs.ollama.com/api/introduction.md)
+- [OpenAI compatibility](https://docs.ollama.com/api/openai-compatibility.md)
+- [List running models](https://docs.ollama.com/api/ps.md): Retrieve a list of models that are currently running
+- [Pull a model](https://docs.ollama.com/api/pull.md)
+- [Push a model](https://docs.ollama.com/api/push.md)
+- [Streaming](https://docs.ollama.com/api/streaming.md)
+- [List models](https://docs.ollama.com/api/tags.md): Fetch a list of models and their details
+- [Usage](https://docs.ollama.com/api/usage.md)
+- [Embeddings](https://docs.ollama.com/capabilities/embeddings.md): Generate text embeddings for semantic search, retrieval, and RAG.
+- [Streaming](https://docs.ollama.com/capabilities/streaming.md)
+- [Structured Outputs](https://docs.ollama.com/capabilities/structured-outputs.md)
+- [Thinking](https://docs.ollama.com/capabilities/thinking.md)
+- [Tool calling](https://docs.ollama.com/capabilities/tool-calling.md)
+- [Vision](https://docs.ollama.com/capabilities/vision.md)
+- [Web search](https://docs.ollama.com/capabilities/web-search.md)
+- [CLI Reference](https://docs.ollama.com/cli.md)
+- [Cloud](https://docs.ollama.com/cloud.md)
+- [Context length](https://docs.ollama.com/context-length.md)
+- [Docker](https://docs.ollama.com/docker.md)
+- [FAQ](https://docs.ollama.com/faq.md)
+- [Hardware support](https://docs.ollama.com/gpu.md)
+- [Importing a Model](https://docs.ollama.com/import.md)
+- [Ollama's documentation](https://docs.ollama.com/index.md)
+- [Claude Code](https://docs.ollama.com/integrations/claude-code.md)
+- [Cline](https://docs.ollama.com/integrations/cline.md)
+- [Codex](https://docs.ollama.com/integrations/codex.md)
+- [Droid](https://docs.ollama.com/integrations/droid.md)
+- [Goose](https://docs.ollama.com/integrations/goose.md)
+- [Overview](https://docs.ollama.com/integrations/index.md)
+- [JetBrains](https://docs.ollama.com/integrations/jetbrains.md)
+- [marimo](https://docs.ollama.com/integrations/marimo.md)
+- [n8n](https://docs.ollama.com/integrations/n8n.md)
+- [NemoClaw](https://docs.ollama.com/integrations/nemoclaw.md)
+- [Onyx](https://docs.ollama.com/integrations/onyx.md)
+- [OpenClaw](https://docs.ollama.com/integrations/openclaw.md)
+- [OpenCode](https://docs.ollama.com/integrations/opencode.md)
+- [Pi](https://docs.ollama.com/integrations/pi.md)
+- [Roo Code](https://docs.ollama.com/integrations/roo-code.md)
+- [VS Code](https://docs.ollama.com/integrations/vscode.md)
+- [Xcode](https://docs.ollama.com/integrations/xcode.md)
+- [Zed](https://docs.ollama.com/integrations/zed.md)
+- [Linux](https://docs.ollama.com/linux.md)
+- [macOS](https://docs.ollama.com/macos.md)
+- [Modelfile Reference](https://docs.ollama.com/modelfile.md)
+- [Quickstart](https://docs.ollama.com/quickstart.md)
+- [Troubleshooting](https://docs.ollama.com/troubleshooting.md): How to troubleshoot issues encountered with Ollama
+- [Windows](https://docs.ollama.com/windows.md)
+
+## OpenAPI Specs
+
+- [openapi](https://docs.ollama.com/openapi.yaml)
+
 ---
 
-````
-Start Ollama:
-
-```shell  theme={"system"}
+```Start Ollama shell  theme={"system}
 ollama serve
 ```
 
@@ -1700,10 +1890,10 @@ A Modelfile is the blueprint to create and share customized models using Ollama.
 
 The format of the `Modelfile`:
 
-```
+``
 # comment
 INSTRUCTION arguments
-```
+``
 
 | Instruction                         | Description                                                    |
 | ----------------------------------- | -------------------------------------------------------------- |
@@ -1746,7 +1936,7 @@ To view the Modelfile of a given model, use the `ollama show --modelfile` comman
 ollama show --modelfile llama3.2
 ```
 
-```cmake
+```makefile
 # Modelfile generated by "ollama show"
 # To build a new Modelfile based on this one, replace the FROM line with:
 # FROM llama3.2:latest
@@ -1793,7 +1983,67 @@ FROM llama3.2
 ```
 FROM <model directory>
 ```
+ Docs
 
+- [Get version](https://docs.ollama.com/api-reference/get-version.md): Retrieve the version of the Ollama
+- [Show model details](https://docs.ollama.com/api-reference/show-model-details.md)
+- [Anthropic compatibility](https://docs.ollama.com/api/anthropic-compatibility.md)
+- [Authentication](https://docs.ollama.com/api/authentication.md)
+- [Generate a chat message](https://docs.ollama.com/api/chat.md): Generate the next chat message in a conversation between a user and an assistant.
+- [Copy a model](https://docs.ollama.com/api/copy.md)
+- [Create a model](https://docs.ollama.com/api/create.md)
+- [Delete a model](https://docs.ollama.com/api/delete.md)
+- [Generate embeddings](https://docs.ollama.com/api/embed.md): Creates vector embeddings representing the input text
+- [Errors](https://docs.ollama.com/api/errors.md)
+- [Generate a response](https://docs.ollama.com/api/generate.md): Generates a response for the provided prompt
+- [Introduction](https://docs.ollama.com/api/introduction.md)
+- [OpenAI compatibility](https://docs.ollama.com/api/openai-compatibility.md)
+- [List running models](https://docs.ollama.com/api/ps.md): Retrieve a list of models that are currently running
+- [Pull a model](https://docs.ollama.com/api/pull.md)
+- [Push a model](https://docs.ollama.com/api/push.md)
+- [Streaming](https://docs.ollama.com/api/streaming.md)
+- [List models](https://docs.ollama.com/api/tags.md): Fetch a list of models and their details
+- [Usage](https://docs.ollama.com/api/usage.md)
+- [Embeddings](https://docs.ollama.com/capabilities/embeddings.md): Generate text embeddings for semantic search, retrieval, and RAG.
+- [Streaming](https://docs.ollama.com/capabilities/streaming.md)
+- [Structured Outputs](https://docs.ollama.com/capabilities/structured-outputs.md)
+- [Thinking](https://docs.ollama.com/capabilities/thinking.md)
+- [Tool calling](https://docs.ollama.com/capabilities/tool-calling.md)
+- [Vision](https://docs.ollama.com/capabilities/vision.md)
+- [Web search](https://docs.ollama.com/capabilities/web-search.md)
+- [CLI Reference](https://docs.ollama.com/cli.md)
+- [Cloud](https://docs.ollama.com/cloud.md)
+- [Context length](https://docs.ollama.com/context-length.md)
+- [Docker](https://docs.ollama.com/docker.md)
+- [FAQ](https://docs.ollama.com/faq.md)
+- [Hardware support](https://docs.ollama.com/gpu.md)
+- [Importing a Model](https://docs.ollama.com/import.md)
+- [Ollama's documentation](https://docs.ollama.com/index.md)
+- [Claude Code](https://docs.ollama.com/integrations/claude-code.md)
+- [Cline](https://docs.ollama.com/integrations/cline.md)
+- [Codex](https://docs.ollama.com/integrations/codex.md)
+- [Droid](https://docs.ollama.com/integrations/droid.md)
+- [Goose](https://docs.ollama.com/integrations/goose.md)
+- [Overview](https://docs.ollama.com/integrations/index.md)
+- [JetBrains](https://docs.ollama.com/integrations/jetbrains.md)
+- [marimo](https://docs.ollama.com/integrations/marimo.md)
+- [n8n](https://docs.ollama.com/integrations/n8n.md)
+- [NemoClaw](https://docs.ollama.com/integrations/nemoclaw.md)
+- [Onyx](https://docs.ollama.com/integrations/onyx.md)
+- [OpenClaw](https://docs.ollama.com/integrations/openclaw.md)
+- [OpenCode](https://docs.ollama.com/integrations/opencode.md)
+- [Pi](https://docs.ollama.com/integrations/pi.md)
+- [Roo Code](https://docs.ollama.com/integrations/roo-code.md)
+- [VS Code](https://docs.ollama.com/integrations/vscode.md)
+- [Xcode](https://docs.ollama.com/integrations/xcode.md)
+- [Zed](https://docs.ollama.com/integrations/zed.md)
+- [Linux](https://docs.ollama.com/linux.md)
+- [macOS](https://docs.ollama.com/macos.md)
+- [Modelfile Reference](https://docs.ollama.com/modelfile.md)
+- [Quickstart](https://docs.ollama.com/quickstart.md)
+- [Troubleshooting](https://docs.ollama.com/troubleshooting.md): How to troubleshoot issues encountered with Ollama
+- [Windows](https://docs.ollama.com/windows.md)
+  
 The model directory should contain the Safetensors weights for a supported architecture.
 
 Currently supported model architectures:
@@ -1802,10 +2052,76 @@ Currently supported model architectures:
 * Mistral (including Mistral 1, Mistral 2, and Mixtral)
 * Gemma (including Gemma 1 and Gemma 2)
 * Phi3
+# Ollama
 
+## Docs
+
+- [Get version](https://docs.ollama.com/api-reference/get-version.md): Retrieve the version of the Ollama
+- [Show model details](https://docs.ollama.com/api-reference/show-model-details.md)
+- [Anthropic compatibility](https://docs.ollama.com/api/anthropic-compatibility.md)
+- [Authentication](https://docs.ollama.com/api/authentication.md)
+- [Generate a chat message](https://docs.ollama.com/api/chat.md): Generate the next chat message in a conversation between a user and an assistant.
+- [Copy a model](https://docs.ollama.com/api/copy.md)
+- [Create a model](https://docs.ollama.com/api/create.md)
+- [Delete a model](https://docs.ollama.com/api/delete.md)
+- [Generate embeddings](https://docs.ollama.com/api/embed.md): Creates vector embeddings representing the input text
+- [Errors](https://docs.ollama.com/api/errors.md)
+- [Generate a response](https://docs.ollama.com/api/generate.md): Generates a response for the provided prompt
+- [Introduction](https://docs.ollama.com/api/introduction.md)
+- [OpenAI compatibility](https://docs.ollama.com/api/openai-compatibility.md)
+- [List running models](https://docs.ollama.com/api/ps.md): Retrieve a list of models that are currently running
+- [Pull a model](https://docs.ollama.com/api/pull.md)
+- [Push a model](https://docs.ollama.com/api/push.md)
+- [Streaming](https://docs.ollama.com/api/streaming.md)
+- [List models](https://docs.ollama.com/api/tags.md): Fetch a list of models and their details
+- [Usage](https://docs.ollama.com/api/usage.md)
+- [Embeddings](https://docs.ollama.com/capabilities/embeddings.md): Generate text embeddings for semantic search, retrieval, and RAG.
+- [Streaming](https://docs.ollama.com/capabilities/streaming.md)
+- [Structured Outputs](https://docs.ollama.com/capabilities/structured-outputs.md)
+- [Thinking](https://docs.ollama.com/capabilities/thinking.md)
+- [Tool calling](https://docs.ollama.com/capabilities/tool-calling.md)
+- [Vision](https://docs.ollama.com/capabilities/vision.md)
+- [Web search](https://docs.ollama.com/capabilities/web-search.md)
+- [CLI Reference](https://docs.ollama.com/cli.md)
+- [Cloud](https://docs.ollama.com/cloud.md)
+- [Context length](https://docs.ollama.com/context-length.md)
+- [Docker](https://docs.ollama.com/docker.md)
+- [FAQ](https://docs.ollama.com/faq.md)
+- [Hardware support](https://docs.ollama.com/gpu.md)
+- [Importing a Model](https://docs.ollama.com/import.md)
+- [Ollama's documentation](https://docs.ollama.com/index.md)
+- [Claude Code](https://docs.ollama.com/integrations/claude-code.md)
+- [Cline](https://docs.ollama.com/integrations/cline.md)
+- [Codex](https://docs.ollama.com/integrations/codex.md)
+- [Droid](https://docs.ollama.com/integrations/droid.md)
+- [Goose](https://docs.ollama.com/integrations/goose.md)
+- [Overview](https://docs.ollama.com/integrations/index.md)
+- [JetBrains](https://docs.ollama.com/integrations/jetbrains.md)
+- [marimo](https://docs.ollama.com/integrations/marimo.md)
+- [n8n](https://docs.ollama.com/integrations/n8n.md)
+- [NemoClaw](https://docs.ollama.com/integrations/nemoclaw.md)
+- [Onyx](https://docs.ollama.com/integrations/onyx.md)
+- [OpenClaw](https://docs.ollama.com/integrations/openclaw.md)
+- [OpenCode](https://docs.ollama.com/integrations/opencode.md)
+- [Pi](https://docs.ollama.com/integrations/pi.md)
+- [Roo Code](https://docs.ollama.com/integrations/roo-code.md)
+- [VS Code](https://docs.ollama.com/integrations/vscode.md)
+- [Xcode](https://docs.ollama.com/integrations/xcode.md)
+- [Zed](https://docs.ollama.com/integrations/zed.md)
+- [Linux](https://docs.ollama.com/linux.md)
+- [macOS](https://docs.ollama.com/macos.md)
+- [Modelfile Reference](https://docs.ollama.com/modelfile.md)
+- [Quickstart](https://docs.ollama.com/quickstart.md)
+- [Troubleshooting](https://docs.ollama.com/troubleshooting.md): How to troubleshoot issues encountered with Ollama
+- [Windows](https://docs.ollama.com/windows.md)
+
+## OpenAPI Specs
+
+- [openapi](https://docs.ollama.com/openapi.yaml)
+- 
 #### Build from a GGUF file
 
-```
+```gni
 FROM ./ollama-model.gguf
 ```
 
@@ -1815,13 +2131,13 @@ The GGUF file location should be specified as an absolute path or relative to th
 
 The `PARAMETER` instruction defines a parameter that can be set when the model is run.
 
-```
+```cli
 PARAMETER <parameter> <parametervalue>
 ```
 
 #### Valid Parameters and Values
 
-| Parameter       | Description                                                                                                                                                                                                                                                                                                                                                                     | Value Type | Example Usage        |
+| Parameter       | Description                                                                                                                                                                                                                                                                                                                                                      | Value Type | Example Usage        |
 | --------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------- | -------------------- |
 | num\_ctx        | Sets the size of the context window used to generate the next token. (Default: 2048)                                                                                                                                                                                                                                                                                            | int        | num\_ctx 4096        |
 | repeat\_last\_n | Sets how far back for the model to look back to prevent repetition. (Default: 64, 0 = disabled, -1 = num\_ctx)                                                                                                                                                                                                                                                                  | int        | repeat\_last\_n 64   |
@@ -2659,15 +2975,15 @@ ollama push lmlm/Lmkm
 
 To configure without launching:
 
-```shell  theme={"system"}
+```psd1  theme={"system"}
 ollama launch droid --config
 ```
 
 ### Manual setup
 
-Add a local configuration block to `~/.factory/config.json`:
+Add a local configuration block to `~/.factory/config.jsonl`:
 
-```json  theme={"system"}
+```jsonl  theme={"system"}
 {
   "custom_models": [
     {
@@ -2682,7 +2998,7 @@ Add a local configuration block to `~/.factory/config.json`:
 }
 ```
 
-## Cloud Models
+## Cloud Models `qwicklmlm`
 
 `qwen3-coder:480b-cloud` is the recommended model for use with Droid.
 
@@ -2694,10 +3010,10 @@ Add the cloud configuration block to `~/.factory/config.json`:
     {
       "model_display_name": "qwen3-coder [Ollama Cloud]",
       "model": "qwen3-coder:480b-cloud",
-      "base_url": "http://localhost:11434/v1/",
+      "base_url": "http://localhost:3000/v1/",
       "api_key": "not-needed",
       "provider": "generic-chat-completion-api",
-      "max_tokens": 128000
+      "max_tokens": 128000000
     }
   ]
 }
