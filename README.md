@@ -1,21 +1,28 @@
 ---
 tittle: LMLM 
-doc:
-# Local Multi-Language AI Model
+doc: Local Multi-Language AI Model
+---
+
+```cpp```
+```txt
 ██╗     ███╗    ██╗██╗     ██╗      ██████╗ 
     ██║     ████╗ ████║██║     ██║     ██╔═══██╗
 ██║     ██╔████╔██║██║     ██║     ██║   ██║
 ██║     ██║╚██╔╝██║██║     ██║     ██║   ██║
 ███████╗██║ ╚═╝ ██║███████╗███████╗╚██████╔╝
 ╚══════╝╚═╝     ╚═╝╚══════╝╚══════╝ ╚═════╝
+```
 ---
-
-╔═╗╔═╗╔═╗   ╔═╗╔═╗╔═╗
+```txt
+[Local Multi-Language AI Model]
+╔═╗╔═╗╔═╗   ╔═╗╔═╗╔═
 ║L║║M║║L║──►║M║║U║║L║
 ╚═╝╚═╝╚═╝   ╚═╝╚═╝╚═╝
-   ◉──◉──◉   ◉──◉──◉
-   
-[Local Multi-Language AI Model]
+◉──◉──◉   ◉──◉──◉
+``
+---
+````
+
 ![Build](https://img.shields.io/badge/build-passing-brightgreen)  
 ![Python Version](https://img.shields.io/badge/python-3.11-blue)  
 ![License](https://img.shields.io/badge/license-MIT-green)  
@@ -28,17 +35,16 @@ doc:
 
 ## About LMLM
 
-**LMLM — Local Multi-Language AI Model**  
+``LMLM — Local Multi-Language AI Model``
 LMLM is your all-in-one, local AI toolkit for coding across multiple languages. Generate, analyze, and automate code directly on your machine — no cloud required. Fast, modular, and designed for developers who want AI to work **with them**, not somewhere else. From Python to Swift, LMLM handles it all. Build smarter, test faster, and stay fully in control.  
 
-**GitHub Tagline (About field):**  
-> LMLM — Your local, multi-language AI toolkit for coding, analysis, and automation.
+**GitHub Tagline (About field)** LMLM — Your local, `multi-language AI` toolkit for `coding, analysis, and automation`.
 
 ---
 
 ## Features
 
-- **Multi-language support:** Python, JavaScript, Swift, Java, C++, and more.  
+- **```Multi-language support```:** Python, JavaScript, Swift, Java, C++, and more.  
 - **Local execution:** Run models and scripts entirely on your machine.  
 - **AI-assisted development:** Auto-generate code, analyze scripts, scaffold projects.  
 - **CLI-first:** Command-line interface for fast workflow integration.  
@@ -52,7 +58,6 @@ LMLM is your all-in-one, local AI toolkit for coding across multiple languages. 
 # Clone the repo
 git clone https://github.com/Web4application/lmlm.git
 cd lmlm
-
 # Optional: setup virtual environment
 python3 -m venv venv
 source venv/bin/activate
@@ -60,11 +65,12 @@ source venv/bin/activate
 # Install dependencies
 pip install -r requirements.txt
 
-
+```
 ⸻
 
-CLI Usage
+```CLI Usage```
 
+```bash
 # Run the main AI workflow
 lmlm run
 
@@ -76,12 +82,11 @@ lmlm prompt "Create a Python function to reverse a string"
 
 # Analyze existing scripts
 lmlm analyze ./my_project
-
-
+``
 ⸻
-
+```
 Folder Structure (Suggested)
-
+```cpp
 lmlm/
 ├── core/            # Core engine & AI logic
 ├── tools/           # Utility scripts and helpers
@@ -91,7 +96,7 @@ lmlm/
 ├── tests/           # Unit & integration tests
 └── README.md        # This file
 
-
+```
 ⸻
 
 Contribution
@@ -109,7 +114,7 @@ MIT License￼
 
 ---
 
-This README  includes:  
+```This README  includes```:  
 
 1. **Hero section with ASCII + mini AI icon**  
 2. **Badges**: build, Python version, license, stars, issues, Docker pulls, docs  
