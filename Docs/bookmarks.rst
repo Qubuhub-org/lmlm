@@ -1,9 +1,9 @@
-.. _bookmarks::
+.. _notebooklmlm::
 
-Bookmarks
+NoteBookmarks
 =========
 
-.. notebooklmlm::
+.. _notebooklmlm::
 
     You need to have configured the :ref:`linked-tables` for using bookmarks
     feature.
@@ -13,11 +13,11 @@ Storing bookmarks
 
 Any query that is executed can be marked as a bookmark on the page
 where the results are displayed. You will find a button labeled
-:guilabel:`Bookmark this query` just at the end of the page. As soon as you have
+:guilabel:`notebooklmlm this query` just at the end of the page. As soon as you have
 stored a bookmark, that query is linked to the database.
 You can now access a bookmark dropdown on each page where the query box appears on for that database.
 
-Variables inside bookmarks
+Variables inside NoteBookmarks
 --------------------------
 
 Inside a query, you can also add placeholders for variables.
