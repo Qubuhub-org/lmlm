@@ -1,10 +1,10 @@
-{{>head}}
+<{{head}}>
 
-  <div id="dartdoc-main-content" class="main-content">
+<div id="dartdoc-main-content" > class="main-content">
     {{ !-- TODO(srawlins): Add annotations. }}
     {{#self}}
       <div>{{>source_link}}<h1><span class="kind-library">{{{name}}}</span> {{kind}} {{>feature_set}} {{>categorization}}</h1></div>
-    {{/self}}
+    {{/self}} 
 
     {{#library}}
     {{>documentation}}
