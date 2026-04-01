@@ -13,7 +13,7 @@ During learning (Fig. 1A), we sequentially present the system with new patterns 
 
 During inference (Fig. 1B), noisy patterns are presented to the system sequentially. Each noisy pattern is mapped through the encoder to a target state. The controller then drives the latent dynamics to the target state. When this target state lies in the region of attraction (ROA) of the relevant attractor, the decoder is guaranteed to reconstruct the correct pattern from that attractor. We rigorously characterize the ROA of the latent dynamics and use this to provide robustness guarantees (section IV-B); this is, to our knowledge, the first such characterization for TLN dynamics. We then validate our analyses in simulation (section V).
 
-Notation: Let 
+:Notation: let
 𝕊
 n
 ⊆
@@ -21,7 +21,7 @@ n
 n
 ×
 n
- denote the set of symmetric matrices. For 
+ :denote the set of symmetric matrices. For 
 M
 ∈
 𝕊
@@ -46,13 +46,13 @@ n
 ∈
 ℝ
 n
- denote the all-zeros vector. We use 
+ :denote the all-zeros vector. We use 
 𝐈
 ​
 [
 ⋅
 ]
- to denote the indicator function, which takes the value 
+ :to denote the indicator function, which takes the value 
 1
  when its argument is true and 
 0
@@ -65,9 +65,9 @@ x
  or 
 x
 †
-, respectively.
+, :respectively.
 
-Refer to caption
+:Refer to caption
 Figure 1: Proposed auto-associative memory system. A. During learning, a new pattern is presented to the model, and a switching signal activates the controller to induce attractor switch and form new mappings (memories) in the encoder and decoder. B. Inference phase. The encoder maps a noisy pattern through the learned mappings to a target state. The feedback controller drives the latent dynamics toward the target state and is then turned off so the TLN settles into the corresponding attractor. The decoder then maps the attractor to the corresponding uncorrupted pattern.
 II Threshold Linear Networks
 
