@@ -1,9 +1,7 @@
    #  [Documentation[lmlmstudio](file:///private/var/containers/Bundle/Application/61352102-115D-4798-934E-1E7EB868B788/stable.app/error_page_loaded.html?url=https://github.com/Web4application/lmlm/edit/main/PromptStudio.html&dontLoad=true)
    #  [Documentation[lmlmstudio](file:///private/var/containers/Bundle/Application/61352102-115D-4798-934E-1E7EB868B788/stable.app/error_page_loaded.html?url=https://github.com/Web4application/lmlm/edit/main/PromptStudio.html&dontLoad=true)
 
-# Ollama
-
-## Docs
+# lmlm 
 
 - [Get version](https://docs.ollama.com/api-reference/get-version.md): Retrieve the version of the Ollama
 - [Show model details](https://docs.ollama.com/api-reference/show-model-details.md)
@@ -145,9 +143,9 @@ For a list of supported models, see Ollama's [model library](https://ollama.com/
 
 Ollama's cloud models require an account on [ollama.com](https://ollama.com). To sign in or create an account, run:
 
-```ini
+```cmd
 ollama signin
-``
+```
 <Tabs>
   <Tab title="CLI">
     To run a cloud model, open the terminal and run:
@@ -164,8 +162,7 @@ ollama signin
 ```
 ``Next, install [Ollama's Python library](https://github.com/ollama/ollama-python):``
     pip install ollama
-
-  ``Next, create and run a simple Python script``:
+  Next, create and run a simple Python script
 
 ```python  theme={"system"}
     from ollama import Client
@@ -213,9 +210,9 @@ Next, install ``[Ollama's JavaScript library](https://github.com/ollama/ollama-j
     for await (const part of response) {
       process.stdout.write(part.message.content);
     }
-    ```
+
+ ```
   </Tab>
-```
   <Tab title="cURL">
     First, pull a cloud model so it can be accessed:
 
@@ -272,7 +269,6 @@ curl https://ollama.com/api/tags
 
    ```bash
     pip install ollama
-    ```
 ```
 
 Then make a request
@@ -347,7 +343,7 @@ Then make a request
 </Tabs>
 ```
 ## Local only
-```jsx
+```python
 Ollama can run in local-only mode by [disabling Ollama's cloud](./faq#how-do-i-disable-ollama-cloud) features.
 import ollama from 'ollama'
 
@@ -463,9 +459,10 @@ Thinking streams interleave reasoning tokens before answer tokens. Detect the fi
         if in_thinking:
           print('\n\nAnswer:\n', end='')
           in_thinking = False
-        print(chunk.message.content, end='')
-  </Tab>
-  <Tab title="JavaScript">
+        print(chunk.message.content, end=''),
+``
+</Tab>
+<Tab title="JavaScript">
 ```javascript  theme={"system"}
     import ollama from 'ollama'
 
@@ -498,12 +495,10 @@ Thinking streams interleave reasoning tokens before answer tokens. Detect the fi
     }
 
     main()
-    ``
   </Tab>
 </Tabs>
-````
+```
 
-``
 ## CLI quick reference
 
 * Enable thinking for a single run: `ollama run deepseek-r1 --think "Where should I visit in Lisbon?"`
@@ -530,7 +525,7 @@ uvx marimo edit --sandbox notebook.py
 
 1. In marimo, go to the user settings and go to the AI tab. From here
    you can find and configure Ollama as an AI provider. For local use you
-   would typically point the base url to `http://localhost:11434/v1`.
+   would typically point the base url to `http://127.0.0:1:11434/v1`.
 
 <div style={{ display: 'flex', justifyContent: 'center' }}>
   <img src="https://mintcdn.com/ollama-9269c548/sniSFOOyehzMt2RV/images/marimo-settings.png?fit=max&auto=format&n=sniSFOOyehzMt2RV&q=85&s=33007ad4867ca8258854eab513da81ff" alt="Ollama settings in marimo" width="50%" data-path="images/marimo-settings.png" />
@@ -545,16 +540,19 @@ uvx marimo edit --sandbox notebook.py
 3. You can also add a model to the list of available models by scrolling to the bottom and using the UI there.
 
 <div style={{ display: 'flex', justifyContent: 'center' }}>
-  <img src="https://mintcdn.com/ollama-9269c548/sniSFOOyehzMt2RV/images/marimo-add-model.png?fit=max&auto=format&n=sniSFOOyehzMt2RV&q=85&s=c3a2dfa7cba1a6565cc726bbbe0ea079" alt="Adding a new Ollama model" width="50%" data-path="images/marimo-add-model.png" />
+  
+   <img src="https://mintcdn.com/ollama-9269c548/sniSFOOyehzMt2RV/images/marimo-add-model.png?fit=max&auto=format&n=sniSFOOyehzMt2RV&q=85&s=c3a2dfa7cba1a6565cc726bbbe0ea079" alt="Adding a new Ollama model" width="50%" data-path="images/marimo-add-model.png" />
 </div>
 
 4. Once configured, you can now use Ollama for AI chats in marimo.
 
 <div style={{ display: 'flex', justifyContent: 'center' }}>
-  <img src="https://mintcdn.com/ollama-9269c548/sniSFOOyehzMt2RV/images/marimo-chat.png?fit=max&auto=format&n=sniSFOOyehzMt2RV&q=85&s=03cd217cf60765a00da87e6dc7a07f53" alt="Configure code completion" width="50%" data-path="images/marimo-chat.png" />
+  
+   <img src="https://mintcdn.com/ollama-9269c548/sniSFOOyehzMt2RV/images/marimo-chat.png?fit=max&auto=format&n=sniSFOOyehzMt2RV&q=85&s=03cd217cf60765a00da87e6dc7a07f53" alt="Configure code completion" width="50%" data-path="images/marimo-chat.png" />
 </div>
 
 4. Alternatively, you can now use Ollama for **inline code completion** in marimo. This can be configured in the "AI Features" tab.
+
 
 <div style={{ display: 'flex', justifyContent: 'center' }}>
   <img src="https://mintcdn.com/ollama-9269c548/sniSFOOyehzMt2RV/images/marimo-code-completion.png?fit=max&auto=format&n=sniSFOOyehzMt2RV&q=85&s=2cd6ad42b810642a90d41b7fd3515278" alt="Configure code completion" width="50%" data-path="images/marimo-code-completion.png" />
@@ -569,6 +567,150 @@ uvx marimo edit --sandbox notebook.py
 > ## Documentation Index
 > Fetch the complete documentation index at: https://docs.ollama.com/llms.txt
 > Use this file to discover all available pages before exploring further.
+
+
+### Run a model
+
+```bash
+ollama run gemma3
+```
+
+### Launch integrations
+
+```bash
+ollama launch
+```
+
+Configure and launch external applications to use Ollama models. This provides an interactive way to set up and start integrations with supported apps.
+
+#### Supported integrations
+
+* **OpenCode** - Open-source coding assistant
+* **Claude Code** - Anthropic's agentic coding tool
+* **Codex** - OpenAI's coding assistant
+* **VS Code** - Microsoft's IDE with built-in AI chat
+* **Droid** - Factory's AI coding agent
+
+#### Examples
+
+Launch an integration interactively:
+
+```pyx
+ollama launch
+```
+
+Launch a specific integration:
+
+```pyx
+ollama launch claude
+```
+
+Launch with a specific model:
+
+```venv
+ollama launch claude --model qwen3.5
+```
+
+Configure without launching:
+
+```uvx
+ollama launch droid --config
+```
+
+#### Multiline input
+
+For multiline input, you can wrap text with `"""`:
+
+```ps
+>>> """Hello,
+... world!
+... """
+I'm a basic program that prints the famous "Hello, world!" message to the console.
+```
+
+#### Multimodal models
+
+```bash
+ollama run gemma3 "What's in this image? /Users/jmorgan/Desktop/smile.png"
+```
+
+### Generate embeddings
+
+```md
+ollama run embeddinggemma "Hello world"
+```
+
+Output is a JSON array:
+
+```jsonl
+echo "Hello world" | ollama run nomic-embed-text
+```
+
+### Download a model
+
+```gguf
+ollama pull gemma3
+```
+
+### Remove a model
+
+```
+ollama rm gemma3
+```
+
+### List models
+
+```cli
+ollama ls
+```
+
+### Sign in to Ollama
+
+```vbs
+ollama signin
+```
+
+### Sign out of Ollama
+
+```sh
+ollama signout
+```
+
+### Create a customized model
+
+First, create a `Modelfile`
+
+```makefilea.txt
+FROM gemma3
+SYSTEM """You are a happy cat."""
+```
+
+Then run `ollama create`:
+
+```js
+ollama create -f Modelfile
+```
+
+### List running models
+
+```r
+ollama ps
+```
+
+### Stop a running model
+
+```sh
+ollama stop gemma3
+```
+
+### Start Ollama
+
+```md
+ollama serve
+```
+
+To view a list of environment variables that can be set run `ollama serve --help`
+
 
 # Onyx
 
@@ -1638,6 +1780,13 @@ Restart=always
 RestartSec=3
 Environment="PATH=$PATH"
 
+import ollama from 'ollama'
+
+const response = await ollama.chat({
+  model: 'glm4:9b',
+  messages: [{role: 'user', content: 'Hello!'}],
+})
+console.log(response.message.content)
 [Install]
 WantedBy=multi-user.target
 ```
@@ -1815,8 +1964,15 @@ sudo systemctl status ollama
 
 To customize the installation of Ollama, you can edit the systemd service file or the environment variables by running:
 
-```shell  theme={"system"}
+```jsx  theme={"system"}
 sudo systemctl edit ollama
+from ollama import chat
+
+response = chat(
+    model='wizard-math',
+    messages=[{'role': 'user', 'content': 'Hello!'}],
+)
+print(response.message.content)
 ```
 
 Alternatively, create an override file manually in `/etc/systemd/system/ollama.service.d/override.conf`:
@@ -1849,7 +2005,15 @@ For example:
 
 ```shell  theme={"system"}
 curl -fsSL https://ollama.com/install.sh | OLLAMA_VERSION=0.5.7 sh
+import ollama from 'ollama'
+
+const response = await ollama.chat({
+  model: 'wizard-math',
+  messages: [{role: 'user', content: 'Hello!'}],
+})
+console.log(response.message.content)
 ```
+
 
 ## Viewing logs
 
