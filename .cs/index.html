@@ -6,6 +6,13 @@
     <title>Hello Bulma!</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.4/css/bulma.min.css">
   </head>
+  <section class="section">
+  <h1 class="title">Section</h1>
+  <h2 class="subtitle">
+    A simple container to divide your page into <strong>sections</strong>, like
+    the one you're currently reading.
+  </h2>
+</section>
   <body>
     <div class="fixed-grid has-4-cols">
   <div class="grid">
@@ -17,6 +24,7 @@
     <div class="cell">Cell 6</div>
   </div>
 </div>
+    
   <section class="section">
   <div class="container">
   <div class="grid">
@@ -44,7 +52,33 @@
   <div class="cell">Cell 22</div>
   <div class="cell">Cell 23</div>
   <div class="cell">Cell 24</div>
-</div>
+<nav class="level is-mobile">
+  <div class="level-item has-text-centered">
+    <div>
+      <p class="heading">Tweets</p>
+      <p class="title">3,456</p>
+    </div>
+  </div>
+  <div class="level-item has-text-centered">
+    <div>
+      <p class="heading">Following</p>
+      <p class="title">123</p>
+    </div>
+  </div>
+  <div class="level-item has-text-centered">
+    <div>
+      <p class="heading">Followers</p>
+      <p class="title">456K</p>
+    </div>
+  </div>
+  <div class="level-item has-text-centered">
+    <div>
+      <p class="heading">Likes</p>
+      <p class="title">789</p>
+    </div>
+  </div>
+</nav>
+  </div>
       <h1 class="title">
         Hello World
       </h1>
@@ -342,7 +376,398 @@ Learning Module Updates User Profile</code></pre>
     <div class="cell">Cell 5</div>
     <div class="cell">Cell 6</div>
   </div>
-  </section>
-    
+  </section>    
 </body>
+  <div class="container is-fluid">
+  <div class="notification is-primary">
+    This container is <strong>fluid</strong>: it will have a 32px gap on either
+    side, on any viewport size.
+  </div>
+    <section class="hero is-success is-fullheight">
+  <!-- Hero head: will stick at the top -->
+  <div class="hero-head">
+    <header class="navbar">
+      <div class="container">
+        <div class="navbar-brand">
+          <a class="navbar-item">
+            <img src="https://bulma.io/assets/images/bulma-type-white.png" alt="Logo" />
+          </a>
+          <span class="navbar-burger" data-target="navbarMenuHeroC">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+          </span>
+        </div>
+        <div id="navbarMenuHeroC" class="navbar-menu">
+          <div class="navbar-end">
+            <a class="navbar-item is-active"> Home </a>
+            <a class="navbar-item"> Examples </a>
+            <a class="navbar-item"> Documentation </a>
+            <span class="navbar-item">
+              <a class="button is-success is-inverted">
+                <span class="icon">
+                  <i class="fab fa-github"></i>
+                </span>
+                <span>Download</span>
+              </a>
+            </span>
+          </div>
+        </div>
+      </div>
+    </header>
+  </div>
+
+  <!-- Hero content: will be in the middle -->
+  <div class="hero-body">
+    <div class="container has-text-centered">
+      <p class="title">Title</p>
+      <p class="subtitle">Subtitle</p>
+    </div>
+  </div>
+
+  <!-- Hero footer: will stick at the bottom -->
+  <div class="hero-foot">
+    <nav class="tabs is-boxed is-fullwidth">
+      <div class="container">
+        <ul>
+          <li class="is-active"><a>Overview</a></li>
+          <li><a>Modifiers</a></li>
+          <li><a>Grid</a></li>
+          <li><a>Elements</a></li>
+          <li><a>Components</a></li>
+          <li><a>Layout</a></li>
+        </ul>
+      </div>
+    </nav>
+  </div>
+</section>
+   <article class="media">
+  <figure class="media-left">
+    <p class="image is-64x64">
+      <img src="https://bulma.io/assets/images/placeholders/128x128.png" />
+    </p>
+  </figure>
+  <div class="media-content">
+    <div class="content">
+      <p>
+        <strong>Barbara Middleton</strong>
+        <br />
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis porta eros
+        lacus, nec ultricies elit blandit non. Suspendisse pellentesque mauris
+        sit amet dolor blandit rutrum. Nunc in tempus turpis.
+        <br />
+        <small><a>Like</a> · <a>Reply</a> · 3 hrs</small>
+      </p>
+    </div>
+
+    <article class="media">
+      <figure class="media-left">
+        <p class="image is-48x48">
+          <img src="https://bulma.io/assets/images/placeholders/96x96.png" />
+        </p>
+      </figure>
+      <div class="media-content">
+        <div class="content">
+          <p>
+            <strong>Sean Brown</strong>
+            <br />
+            Donec sollicitudin urna eget eros malesuada sagittis. Pellentesque
+            habitant morbi tristique senectus et netus et malesuada fames ac
+            turpis egestas. Aliquam blandit nisl a nulla sagittis, a lobortis
+            leo feugiat.
+            <br />
+            <small><a>Like</a> · <a>Reply</a> · 2 hrs</small>
+          </p>
+        </div>
+
+        <article class="media">
+          Vivamus quis semper metus, non tincidunt dolor. Vivamus in mi eu lorem
+          cursus ullamcorper sit amet nec massa.
+        </article>
+
+        <article class="media">
+          Morbi vitae diam et purus tincidunt porttitor vel vitae augue.
+          Praesent malesuada metus sed pharetra euismod. Cras tellus odio,
+          tincidunt iaculis diam non, porta aliquet tortor.
+        </article>
+      </div>
+    </article>
+
+    <article class="media">
+      <figure class="media-left">
+        <p class="image is-48x48">
+          <img src="https://bulma.io/assets/images/placeholders/96x96.png" />
+        </p>
+      </figure>
+      <div class="media-content">
+        <div class="content">
+          <p>
+            <strong>Kayli Eunice </strong>
+            <br />
+            Sed convallis scelerisque mauris, non pulvinar nunc mattis vel.
+            Maecenas varius felis sit amet magna vestibulum euismod malesuada
+            cursus libero. Vestibulum ante ipsum primis in faucibus orci luctus
+            et ultrices posuere cubilia Curae; Phasellus lacinia non nisl id
+            feugiat.
+            <br />
+            <small><a>Like</a> · <a>Reply</a> · 2 hrs</small>
+          </p>
+        </div>
+      </div>
+    </article>
+  </div>
+</article>
+
+<article class="media">
+  <figure class="media-left">
+    <p class="image is-64x64">
+      <img src="https://bulma.io/assets/images/placeholders/128x128.png" />
+    </p>
+  </figure>
+  <div class="media-content">
+    <div class="field">
+      <p class="control">
+        <textarea class="textarea" placeholder="Add a comment..."></textarea>
+      </p>
+    </div>
+    <div class="field">
+      <p class="control">
+        <button class="button">Post comment</button>
+      </p>
+    </div>
+  </div>
+</article> 
+</div>
+  <footer class="footer">
+  <div class="content has-text-centered">
+    <p>
+      <strong>Bulma</strong> by <a href="https://jgthms.com">Jeremy Thomas</a>.
+      The source code is licensed
+      <a href="https://opensource.org/license/mit">MIT</a>. The
+      website content is licensed
+      <a href="https://creativecommons.org/licenses/by-nc-sa/4.0//"
+        >CC BY NC SA 4.0</a
+      >.
+    </p>
+  </div>
+</footer>
+  Class	Code	Example	Invert
+has-text-primary	
+<p class="has-text-primary">Hello Bulma</p>
+Hello Bulma		Hello Bulma	
+has-text-primary-00	
+<p class="has-text-primary-00">Hello Bulma</p>
+Hello Bulma		Hello Bulma	
+has-text-primary-05	
+<p class="has-text-primary-05">Hello Bulma</p>
+Hello Bulma		Hello Bulma	
+has-text-primary-10	
+<p class="has-text-primary-10">Hello Bulma</p>
+Hello Bulma		Hello Bulma	
+has-text-primary-15	
+<p class="has-text-primary-15">Hello Bulma</p>
+Hello Bulma		Hello Bulma	
+has-text-primary-20	
+<p class="has-text-primary-20">Hello Bulma</p>
+Hello Bulma		Hello Bulma	
+has-text-primary-25	
+<p class="has-text-primary-25">Hello Bulma</p>
+Hello Bulma		Hello Bulma	
+has-text-primary-30	
+<p class="has-text-primary-30">Hello Bulma</p>
+Hello Bulma		Hello Bulma	
+has-text-primary-35	
+<p class="has-text-primary-35">Hello Bulma</p>
+Hello Bulma		Hello Bulma	
+has-text-primary-40	
+<p class="has-text-primary-40">Hello Bulma</p>
+Hello Bulma		Hello Bulma	
+has-text-primary-45	
+<p class="has-text-primary-45">Hello Bulma</p>
+Hello Bulma		Hello Bulma	
+has-text-primary-50	
+<p class="has-text-primary-50">Hello Bulma</p>
+Hello Bulma		Hello Bulma	
+has-text-primary-55	
+<p class="has-text-primary-55">Hello Bulma</p>
+Hello Bulma		Hello Bulma	
+has-text-primary-60	
+<p class="has-text-primary-60">Hello Bulma</p>
+Hello Bulma		Hello Bulma	
+has-text-primary-65	
+<p class="has-text-primary-65">Hello Bulma</p>
+Hello Bulma		Hello Bulma	
+has-text-primary-70	
+<p class="has-text-primary-70">Hello Bulma</p>
+Hello Bulma		Hello Bulma	
+has-text-primary-75	
+<p class="has-text-primary-75">Hello Bulma</p>
+Hello Bulma		Hello Bulma	
+has-text-primary-80	
+<p class="has-text-primary-80">Hello Bulma</p>
+Hello Bulma		Hello Bulma	
+has-text-primary-85	
+<p class="has-text-primary-85">Hello Bulma</p>
+Hello Bulma		Hello Bulma	
+has-text-primary-90	
+<p class="has-text-primary-90">Hello Bulma</p>
+Hello Bulma		Hello Bulma	
+has-text-primary-95	
+<p class="has-text-primary-95">Hello Bulma</p>
+Hello Bulma		Hello Bulma	
+has-text-primary-100	
+<p class="has-text-primary-100">Hello Bulma</p>
+Hello Bulma		Hello Bulma	
+has-text-primary-light	
+<p class="has-text-primary-light">Hello Bulma</p>
+Hello Bulma		Hello Bulma	
+has-text-primary-dark	
+<p class="has-text-primary-dark">Hello Bulma</p>
+Hello Bulma		Hello Bulma	
+has-text-primary-soft	
+<p class="has-text-primary-soft">Hello Bulma</p>
+Hello Bulma		Hello Bulma	
+has-text-primary-bold	
+<p class="has-text-primary-bold">Hello Bulma</p>
+Hello Bulma		Hello Bulma	
+has-text-primary-on-scheme	
+<p class="has-text-primary-on-scheme">Hello Bulma</p>
+Hello Bulma		Hello Bulma	
+
+Class	Code	Example	Swatch
+has-background-primary	
+<p class="has-background-primary has-text-primary-invert">
+Hello Bulma
+</p>
+Hello Bulma	
+has-background-primary-00	
+<p class="has-background-primary-00 has-text-primary-00-invert">
+Hello Bulma
+</p>
+Hello Bulma	
+has-background-primary-05	
+<p class="has-background-primary-05 has-text-primary-05-invert">
+Hello Bulma
+</p>
+Hello Bulma	
+has-background-primary-10	
+<p class="has-background-primary-10 has-text-primary-10-invert">
+Hello Bulma
+</p>
+Hello Bulma	
+has-background-primary-15	
+<p class="has-background-primary-15 has-text-primary-15-invert">
+Hello Bulma
+</p>
+Hello Bulma	
+has-background-primary-20	
+<p class="has-background-primary-20 has-text-primary-20-invert">
+Hello Bulma
+</p>
+Hello Bulma	
+has-background-primary-25	
+<p class="has-background-primary-25 has-text-primary-25-invert">
+Hello Bulma
+</p>
+Hello Bulma	
+has-background-primary-30	
+<p class="has-background-primary-30 has-text-primary-30-invert">
+Hello Bulma
+</p>
+Hello Bulma	
+has-background-primary-35	
+<p class="has-background-primary-35 has-text-primary-35-invert">
+Hello Bulma
+</p>
+Hello Bulma	
+has-background-primary-40	
+<p class="has-background-primary-40 has-text-primary-40-invert">
+Hello Bulma
+</p>
+Hello Bulma	
+has-background-primary-45	
+<p class="has-background-primary-45 has-text-primary-45-invert">
+Hello Bulma
+</p>
+Hello Bulma	
+has-background-primary-50	
+<p class="has-background-primary-50 has-text-primary-50-invert">
+Hello Bulma
+</p>
+Hello Bulma	
+has-background-primary-55	
+<p class="has-background-primary-55 has-text-primary-55-invert">
+Hello Bulma
+</p>
+Hello Bulma	
+has-background-primary-60	
+<p class="has-background-primary-60 has-text-primary-60-invert">
+Hello Bulma
+</p>
+Hello Bulma	
+has-background-primary-65	
+<p class="has-background-primary-65 has-text-primary-65-invert">
+Hello Bulma
+</p>
+Hello Bulma	
+has-background-primary-70	
+<p class="has-background-primary-70 has-text-primary-70-invert">
+Hello Bulma
+</p>
+Hello Bulma	
+has-background-primary-75	
+<p class="has-background-primary-75 has-text-primary-75-invert">
+Hello Bulma
+</p>
+Hello Bulma	
+has-background-primary-80	
+<p class="has-background-primary-80 has-text-primary-80-invert">
+Hello Bulma
+</p>
+Hello Bulma	
+has-background-primary-85	
+<p class="has-background-primary-85 has-text-primary-85-invert">
+Hello Bulma
+</p>
+Hello Bulma	
+has-background-primary-90	
+<p class="has-background-primary-90 has-text-primary-90-invert">
+Hello Bulma
+</p>
+Hello Bulma	
+has-background-primary-95	
+<p class="has-background-primary-95 has-text-primary-95-invert">
+Hello Bulma
+</p>
+Hello Bulma	
+has-background-primary-100	
+<p class="has-background-primary-100 has-text-primary-100-invert">
+Hello Bulma
+</p>
+Hello Bulma	
+has-background-primary-light	
+<p class="has-background-primary-light has-text-primary-light-invert">
+Hello Bulma
+</p>
+Hello Bulma	
+has-background-primary-dark	
+<p class="has-background-primary-dark has-text-primary-dark-invert">
+Hello Bulma
+</p>
+Hello Bulma	
+has-background-primary-soft	
+<p class="has-background-primary-soft has-text-primary-soft-invert">
+Hello Bulma
+</p>
+Hello Bulma	
+has-background-primary-bold	
+<p class="has-background-primary-bold has-text-primary-bold-invert">
+Hello Bulma
+</p>
+Hello Bulma	
+has-background-primary-on-scheme	
+<p class="has-background-primary-on-scheme has-text-primary-on-scheme-invert">
+Hello Bulma
+</p>
 </html>
