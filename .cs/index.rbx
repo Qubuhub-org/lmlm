@@ -1,13 +1,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-</head>
+</head> 
 <body>
-      <script s
-      <dv
-            
-      </dv>
-
 <p class="p1"><span class="s1"> lmlm.io  </span><span class="s2">ultimate LMLM Master Blueprint</span><span class="s1"> — your vision of a daily AI companion that feels alive, learns from its user, and is indispensable in their life. I’ll break it into </span><span class="s2">modules, behavior loops, and tech layers</span><span class="s1">, so you can use it as a roadmap to build or pitch the system.</span></p>
 <p class="p2"><span class="s3"><hr></span></p>
 <p class="p2"><span class="s3"><h1><span class="s1">LMLM Master Blueprint — The Ultimate Daily AI Companion</span></h1></span></p>
