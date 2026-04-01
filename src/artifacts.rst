@@ -1,5 +1,5 @@
 <repository name="org.eclipse.tm4e.repository" type="org.eclipse.equinox.p2.artifact.repository.simpleRepository" version="1">
-  <properties size="4">
+  <properties size="4"> 
     <property name="publishPackFilesAsSiblings" value="true"/>
     <property name="p2.compressed" value="true"/>
     <property name="p2.timestamp" value="1678823598329"/>
