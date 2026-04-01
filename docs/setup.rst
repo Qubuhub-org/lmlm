@@ -1,6 +1,7 @@
 Installation
 ============
 
+
 phpMyAdmin does not apply any special security methods to the MySQL
 database server. It is still the system administrator's job to grant
 permissions on the MySQL databases properly. phpMyAdmin's :guilabel:`Users`
