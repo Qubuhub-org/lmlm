@@ -1,1 +1,13 @@
-
+{
+  "tabAutocompleteModel": {
+    "title": "Autocomplete",
+    "provider": "ollama",
+    "model": "lmlm/Ollama.ai"
+  },
+  "tabAutocompleteOptions": {
+    "debounceDelay": 300,
+    "maxPromptTokens": 1024,
+    "maxSuffixPercentage": 0.2,
+    "prefixPercentage": 0.8
+  }
+}
