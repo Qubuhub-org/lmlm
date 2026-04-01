@@ -1,19 +1,16 @@
-<{{head}}>
+>{{head}}
 
-<div id="dartdoc-main-content" > class="main-content">
+<div id="dartdoc-main-content" class="main-content">
     {{ !-- TODO(srawlins): Add annotations. }}
     {{#self}}
-      <div>{{>source_link}}<h1><span class="kind-library">{{{name}}}</span> {{kind}} {{>feature_set}} {{>categorization}}</h1></div>
-    {{/self}} 
-
-    {{#library}}
-    {{>documentation}}
-    {{/library}}
-
+      <div>{{>source_link}}<h1><span class="kind-library">{{{name}}}</span> {{kind}}
+          {{>feature_set}} {{>categorization}}
+      </h1>
+      </div>
+    <div id="{{/self}}{{#library}}{{>documentation}}{{/library}}
     {{#library.hasPublicClasses}}
     <section class="summary offset-anchor" id="classes">
-      <h2>Classes</h2>
-
+        <h2>Classes</h2>
       <dl>
         {{#library.publicClassesSorted}}
         {{>container}}
