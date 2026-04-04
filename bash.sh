@@ -1,4 +1,4 @@
-```bafybeigdyrzt5sfp7udm7hu76uh7y26nf3efuylqabf3oclgtqy55fbzdi.llvms```
+``bafybeigdyrzt5sfp7udm7hu76uh7y26nf3efuylqabf3oclgtqy55fbzdi.llvms``
 ollama pull llama3.2
 echo "FROM llama3.2" >> Modelfile
 echo "SYSTEM You are a friendly assistant." >> Modelfile
@@ -26,7 +26,9 @@ You are a Senior Software Engineer and Data Scientist.
 - Format all code snippets in markdown blocks with the correct language tag.
 - If a technical request is ambiguous, ask clarifying questions before providing a solution.
 """
-EOF
+EOFssh exe.dev new --name=myname
+
+
 
 # Update and push
 ollama create -f Modelfile lmlm/Ollama.ai
