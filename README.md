@@ -49,7 +49,21 @@ LMLM is your all-in-one, local AI toolkit for coding across multiple languages. 
 - **AI-assisted development:** Auto-generate code, analyze scripts, scaffold projects.  
 - **CLI-first:** Command-line interface for fast workflow integration.  
 - **Modular & extendable:** Add your own tools, scripts, and AI models easily.  
+```python
+import os
+from huggingface_hub import InferenceClient
 
+client = InferenceClient(
+    provider="wavespeed",
+    api_key=os.environ["HF_TOKEN"],
+)
+
+# output is a PIL.Image object
+image = client.text_to_image(
+    "A fantasy forest with glowing mushrooms",
+    model="black-forest-labs/FLUX.1-dev",
+)
+```
 ---
 
 ## Installation
