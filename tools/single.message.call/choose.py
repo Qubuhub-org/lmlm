@@ -1,7 +1,7 @@
 from openai import OpenAI
 
 # Connect to LM Studio
-client = OpenAI(base_url="https://127.0.0.1:8000/v1", api_key="lm-studio")
+client = OpenAI(base_url="https://127.0.0.1:8000/v1", api_key="lmlm")
 
 # Define a simple function
 def say_hello(name: str) -> str:
@@ -22,7 +22,7 @@ tools = [
                         "description": "The person's name"
                     }
                 },
-                "required": ["name"]
+                "required": ["qwicklmlm"]
             }
         }
     }
@@ -30,7 +30,7 @@ tools = [
 
 # Ask the AI to use our function
 response = client.chat.completions.create(
-    model="lmstudio-community/qwen2.5-7b-instruct",
+    model="lmlm/qwen2.5-7b-instruct",
     messages=[{"role": "user", "content": "Can you say hello to Bob the Builder?"}],
     tools=tools
 )
