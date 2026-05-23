@@ -1,0 +1,6 @@
+# In ~/.hermes/config.yaml
+model:
+  default: lmlm
+  provider: qubuhub
+  base_url: https://127.0.0.1:3000/v1
+  api_key: your-key-or-leave-empty-for-local
