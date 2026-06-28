@@ -1,0 +1,36 @@
+name: LMLM Core Automation Check
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  verify-environment:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Check out Repository Code
+      uses: actions/checkout@v4
+
+    - name: Initialize Python Runtime
+      uses: actions/setup-python@v5
+      with:
+        python-state-version: '3.11'
+        cache: 'pip'
+
+    - name: Setup Node for TypeScript Validation
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20'
+
+    - name: Install System and Python Dependencies
+      run: |
+        python -m pip install --upgrade pip
+        if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+
+    - name: Run Core Test Suites
+      run: |
+        # Execute your unit/integration scripts found in the tests directory
+        python -m unittest discover -s tests -p "*_test.py"
