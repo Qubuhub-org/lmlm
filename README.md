@@ -1,6 +1,6 @@
 ---
 tittle: LMLM 
-doc: Local Multi-Language AI Model
+doc: Local Multi-functional AI Model
 ---
 
 ```cpp```
@@ -41,6 +41,25 @@ LMLM is your all-in-one, local AI toolkit for coding across multiple languages. 
 **GitHub Tagline (About field)** LMLM — Your local, `multi-language AI` toolkit for `coding, analysis, and automation`.
 
 ---
+Model Family: LMLM
+Version: LMLM-1
+
+Architecture:
+- Decoder-only Transformer
+- Rotary Positional Embeddings (RoPE)
+- Grouped Query Attention (GQA)
+- RMSNorm
+- SwiGLU
+- Flash Attention support
+- Mixture-of-Experts support (optional in larger variants)
+
+Tokenizer:
+- SentencePiece Unigram
+- Vocabulary: 65,536 tokens
+- Unicode-native
+- Multilingual
+- Code-aware
+- 
 
 ## Features
 
