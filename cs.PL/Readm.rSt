@@ -57,6 +57,7 @@ Covers approaches to information processing (computing, communication, sensing) 
     :cs.FL - Formal Languages and Automata Theory (new, recent, current month)
 Covers automata theory, formal language theory, grammars, and combinatorics on words. This roughly corresponds to ACM Subject Classes F.1.1, and F.4.3. Papers dealing with computational complexity should go to cs.CC; papers dealing with logic should go to cs.LO.
 
+
     :cs.GL - General Literature (new, recent, current month)
 Covers introductory material, survey material, predictions of future trends, biographies, and miscellaneous computer-science related material. Roughly includes all of ACM Subject Class A, except it does not include conference proceedings (which will be listed in the appropriate subject area).
 
