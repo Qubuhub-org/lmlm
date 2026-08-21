@@ -46,11 +46,13 @@ This document contains web-ready HTML, inline-styled CSS, and Markdown snippets 
 	<span style="color: #ff00ff; font-weight: bold;">╔╗  ╔═╗  ╔╗  ╔═╗  </span><span style="color: #00ffff; font-weight: bold;">✦ NEW INVENTION EDITION ✦</span>
 	<span style="color: #ff0066; font-weight: bold;">╠╩╗ ╠═╣  ╠╩╗ ╠═╣  </span><span style="color: #00ccff; font-weight:bold;">─────────────────────────</span>
 	<span style="color: #cc00ff; font-weight: bold;">╚═╝ ╩ ╩  ╚═╝ ╩ ╩ </span>
-	<span style="color: #0099ff; font-weight: bold; font-size: 15px;">Modular AI & Memory Matrix</span>
-	</div>
+	<span style="color: #0099ff; font-weight: bold; font-size: 15px;">Modular AI & Memory Matrix</span></div>
+```
 ## 2. Copy-Paste HTML Code Snippet
 Use this inline HTML snippet in any web application, dashboard, or HTML document:
-	<div style="background-color: #0b0e14; font-family: 'Courier New', Consolas, monospace; white-space: pre; padding: 20px; border-radius: 8px; line-height: 1.25; overflow-x: auto;">
+```index.html
+<a
+<div style="background-color: #0b0e14; font-family: 'Courier New', Consolas, monospace; white-space: pre; padding: 20px; border-radius: 8px; line-height: 1.25; overflow-x: auto;">
 	<span style="color: #66ffff; font-weight: bold;">      ╔═╗╔═╗╔═╗╔═╗</span>
 	<span style="color: #66ffff; font-weight: bold;">      ║L║║M║║L║║M║</span>
 	<span style="color: #66ffff; font-weight: bold;">     ╚═╝╚═╝╚═╝╚═╝</span>
@@ -58,8 +60,9 @@ Use this inline HTML snippet in any web application, dashboard, or HTML document
 	<span style="color: #00ccff; font-weight: bold;">████╗ ████║██║     ██║     ██╔═══██╗</span>
 	  <span style="color: #00ffff; font-weight: bold;">██║     ██╔████╔██║██║     ██║     ██║   ██║</span><span style="color: #33ffff; font-weight: bold;">██║     ██║╚██╔╝██║██║     ██║     ██║   ██║</span>
 <span style="color: #66ffff; font-weight: bold;">███████╗██║ ╚═╝ ██║███████╗███████╗╚██████╔╝</span>
-<span style="color: #99ffff; font-weight: bold;">╚══════╝╚═╝╚═╝╚══════╝╚══════╝ ╚═════╝</span>
-<span style="color: #ff00ff; font-weight: bold;">╔╗╔═╗╔╦╗╔═╗</span>
+<span style="color: #99ffff; font-weight: bold;">
+╚══════╝╚═╝╚═╝╚══════╝╚══════╝╚═════╝
+</span><span style="color: #ff00ff; font-weight: bold;">╔╗╔═╗╔╦╗╔═╗</span>
 <span style="color: #00ffff; font-weight: bold;">✦NEW INVENTION EDITION✦</span>
 	  <span style="color: #ff0066; font-weight: bold;">╠╩╗ ╠═╣║║║╠═╣</span>
 	  <span style="color: #00ccff; font-weight: bold;">─────────────────────────-</span->
