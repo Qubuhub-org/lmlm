@@ -1,4 +1,4 @@
-package com.example;
+package com.web.example;
 
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
