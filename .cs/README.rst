@@ -1,6 +1,8 @@
 ==================================
-  |lmlm Categories within Computer Science|
-  ==================================
+ 
+|lmlm Categories within Computer Science|
+
+==================================
 
 :[cs.pl]:
 
