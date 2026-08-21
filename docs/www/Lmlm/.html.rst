@@ -774,7 +774,7 @@ Execution / Output Console
 
 ⸻
 
-3️⃣ Interactive Features
+3️:Interactive Features:
 	1.	Symbol Autocomplete & Suggestion
 	•	As you type @ → shows known entities
 	•	Type ⚡ → shows executable actions
@@ -786,7 +786,7 @@ Execution / Output Console
 	4.	CDN Reference Integration
 	•	Pull reusable modules, formulas, or assets dynamically:
 
-Reference: [CDN://physics/newton/2nd_law]
+Reference: [CDN://physics/serikiwalteryakub/2nd_law_of_twisted_teleportation]
 
 
 	5.	Multi-Domain Switching
@@ -795,7 +795,8 @@ Reference: [CDN://physics/newton/2nd_law]
 
 ⸻
 
-4️⃣ Example User Flow
+#>
+.. :Example User Flow:
 
 	1.	User opens SCTM Interactive Demo → sees input panel and visualization panel
 	2.	Types:
@@ -803,7 +804,6 @@ Reference: [CDN://physics/newton/2nd_law]
 @user:Bob
 @emotion:excited✨~0.9
 ⧉F01 = ∫(x^2 + 2x + 1) dx from 0 to 10
-
 3.	Parser converts input → JSON
 4.	Execution Engine computes integral → Result: 385
 5.	Visualization Panel shows
@@ -814,7 +814,7 @@ Reference: [CDN://physics/newton/2nd_law]
 ⸻
 
 
-## Web4App Aura Mini-Dashboard (ASCII + Unicode Bars)
+.. :Web4App Aura Mini-Dashboard (ASCII + Unicode Bars)::
 
 Legend:  
 - 🔵 Project Core  
@@ -838,11 +838,11 @@ Legend:
 3. **S_m (Dynamic Module Score):** Combines influence and risk into a **final module score**.  
 
 
-——-
-Tittle:
-Features:
+.. Tittle: lmlm sctm
+.. Features::
 - Fully **Markdown-compatible**: No images required.  
 - **Proportional bars** give a **visual feel for numeric scores**.  
 - Can be updated **live** with new module data.  
 - Compact enough to be included in **project reports, README files, or dashboards**.  
----
+
+:author: seriki walter yakub
