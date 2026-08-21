@@ -102,6 +102,7 @@ Modular AI & Memory Matrix
 | **Neon Pink Top** | `38;5;201` | `#ff00ff` | <span style="color:#ff00ff;">████████</span> |
 | **Magenta Accent** | `38;5;198` | `#ff0066` | <span style="color:#ff0066;">████████</span> |
 | **Purple Accent** | `38;5;165` | `#cc00ff` | <span style="color:#cc00ff;">████████</span> |
+
 ![Build](https://img.shields.io/badge/build-passing-brightgreen)  
 ![Python Version](https://img.shields.io/badge/python-3.11-blue)  
 ![License](https://img.shields.io/badge/license-MIT-green)  
@@ -192,8 +193,8 @@ lmlm/
 ```
 ⸻
 
-> Hello!
-
+```markdown
+#>Hello!>
 Below you can find a outline of how to reproduce my solution for the <Competition Name> competition.
 If you run into any trouble with the setup/code or have any questions please contact me at <email>
 
@@ -215,21 +216,21 @@ Python 3.5.1
 CUDA 8.0
 cuddn 7.1.4.18
 nvidia drivers v.384
--- Equivalent Dockerfile for the GPU installs: https://gitlab.com/nvidia/cuda/blob/ubuntu16.04/8.0/runtime/cudnn7/Dockerfile
+-- Equivalent Dockerfile for the GPU installs: `https://gitlab.com/nvidia/cuda/blob/ubuntu16.04/8.0/runtime/cudnn7/Dockerfile`
 
-#DATA SETUP (assumes the [Kaggle API](https://github.com/Kaggle/kaggle-api) is installed)
-# below are the shell commands used in each step, as run from the top level directory
+#DATA SETUP ([assumes the [Kaggle API](https://github.com/Kaggle/kaggle-api) is installed)
+# below are the shell commands used in each step, as run from the top level directory:
+#>bash>
 mkdir -p data/stage1/
 cd data/stage1/
 kaggle competitions download -c <competition name> -f train.csv
 kaggle competitions download -c <competition name> -f test_stage_1.csv
-```bash
 mkdir -p data/stage2/
 cd ../data/stage1/
 kaggle competitions download -c <competition name> -f test_stage_2.csv
-cd ..
+cd..
 
-#DATA PROCESSING
+#>DATA PROCESSING>
 # The train/predict code will also call this script if it has not already been run on the relevant data.
 python ./train_code/prepare_data.py --data_dir=data/stage1/ --output_dir=data/stage1_cleaned
 
@@ -253,9 +254,9 @@ python ./predict_code/calibrate_model.py
 sh ./predict_code/predict_models.sh
 
 #3) retrain models (overwrites models in comp_model directory)
-sh ./train_code/train_models.sh
-```
-Contribution
+#>sh ./train_code/train_models.sh>
+
+# Contribution
 
 We welcome contributions! Feel free to open issues, submit pull requests, or suggest features.
 	•	Follow the folder structure for consistency.
@@ -270,8 +271,7 @@ MIT License￼
 
 ---
 
-```This README  includes```:  
-
+***This README  includes***:  
 1. **Hero section with ASCII + mini AI icon**  
 2. **Badges**: build, Python version, license, stars, issues, Docker pulls, docs  
 3. **Clear About / GitHub tagline**  
@@ -281,6 +281,7 @@ MIT License￼
 7. **Suggested folder structure**  
 8. **Contribution guidelines**  
 9. **License info**  
+```
 
 ```python
 def ansi_256_to_hex(code):
