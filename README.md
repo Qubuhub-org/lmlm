@@ -5,6 +5,7 @@ doc: Local Multi-Language Model # Local Multi-Language model
 ---
 
 ```lmlm_banner.sctm
+
       ╔═╗╔═╗╔═╗╔═╗
       ║L║║M║║L║║M║  
       ╚═╝╚═╝╚═╝╚═╝
@@ -31,7 +32,6 @@ This document contains web-ready HTML, inline-styled CSS, and Markdown snippets 
 
 ---
 ```index.html [Web-Ready HTML ](Rendered Preview)
-
 <div style="background-color: #0b0e14; color: #e6edf3; font-family: 'Courier New', Consolas, Monaco, monospace; white-space: pre; padding: 24px; border-radius: 10px; border: 1px solid #1f293d; line-height: 1.25; font-size: 14px; overflow-x: auto;">
 	<span style="color: #66ffff; font-weight: bold;">      ╔═╗╔═╗╔═╗╔═╗</span>
 	<span style="color: #66ffff; font-weight: bold;">     ║L║║M║║L║║M║</span>
@@ -51,7 +51,8 @@ This document contains web-ready HTML, inline-styled CSS, and Markdown snippets 
 ## 2. Copy-Paste HTML Code Snippet
 Use this inline HTML snippet in any web application, dashboard, or HTML document:
 ```index.html
-<a
+
+<a>
 <div style="background-color: #0b0e14; font-family: 'Courier New', Consolas, monospace; white-space: pre; padding: 20px; border-radius: 8px; line-height: 1.25; overflow-x: auto;">
 	<span style="color: #66ffff; font-weight: bold;">      ╔═╗╔═╗╔═╗╔═╗</span>
 	<span style="color: #66ffff; font-weight: bold;">      ║L║║M║║L║║M║</span>
@@ -203,6 +204,7 @@ Below you can find a outline of how to reproduce my solution for the <Competitio
 If you run into any trouble with the setup/code or have any questions please contact me at <webapp4@outlook.com>
 
 > #ARCHIVE CONTENTS
+
 kaggle_model.tgz          : original kaggle model upload - contains original code, additional training examples, corrected labels, etc
 comp_etc                     : contains ancillary information for prediction - clustering of training/test examples
 comp_mdl                     : model binaries used in generating solution
@@ -210,7 +212,8 @@ comp_preds                   : model predictions
 train_code                  : code to rebuild models from scratch
 predict_code                : code to generate predictions from model binaries
 
-#HARDWARE: (The following specs were used to create the original solution)
+#HARDWARE:
+(The following specs were used to create the original solution)
 Ubuntu 16.04 LTS (512 GB boot disk)
 n1-standard-16 (16 vCPUs, 60 GB memory)
 1 x NVIDIA Tesla P100
@@ -223,6 +226,7 @@ nvidia drivers v.384
 -- Equivalent Dockerfile for the GPU installs: `https://gitlab.com/nvidia/cuda/blob/ubuntu16.04/8.0/runtime/cudnn7/Dockerfile`
 
 #DATA SETUP ([assumes the [Kaggle API](https://github.com/Kaggle/kaggle-api) is installed)
+
 # below are the shell commands used in each step, as run from the top level directory:
 #>bash>
 mkdir -p data/stage1/
@@ -235,10 +239,12 @@ kaggle competitions download -c <competition name> -f test_stage_2.csv
 cd..
 
 #>DATA PROCESSING>
+
 # The train/predict code will also call this script if it has not already been run on the relevant data.
 python ./train_code/prepare_data.py --data_dir=data/stage1/ --output_dir=data/stage1_cleaned
 
 #MODEL BUILD: There are three options to produce the solution.
+
 1) very fast prediction
     a) runs in a few minutes
     b) uses precomputed neural network predictions
