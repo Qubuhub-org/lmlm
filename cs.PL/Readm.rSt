@@ -1,6 +1,6 @@
 ==================================
 lmlm Categories within Computer Science
-================================== 
+==================================
 
   
 .. :cs.AI: - Artificial Intelligence (new, recent, current month)
