@@ -8,11 +8,11 @@ lmlm Categories within Computer Science
 Covers all areas of AI except Vision, Robotics, Machine Learning, Multiagent Systems, and Computation and Language (Natural Language Processing), which have separate subject areas. In particular, includes Expert Systems, Theorem Proving (although this may overlap with Logic in Computer Science), Knowledge Representation, Planning, and Uncertainty in AI. Roughly includes material in ACM Subject Classes I.2.0, I.2.1, I.2.3, I.2.4, I.2.8, and I.2.11.
 
   
-  :cs.AR: 
+  :cs.AR:: 
   - Hardware Architecture (new, recent, current month)
 Covers systems organization and hardware architecture. Roughly includes material in ACM Subject Classes C.0, C.1, and C.5.
 
-  :cs.CC: 
+  :cs.CC:: 
   - Computational Complexity (new, recent, current month)
 Covers models of computation, complexity classes, structural complexity, complexity tradeoffs, upper and lower bounds. Roughly includes material in ACM Subject Classes F.1 (computation by abstract devices), F.2.3 (tradeoffs among complexity measures), and F.4.3 (formal languages), although some material in formal languages may be more appropriate for Logic in Computer Science. Some material in F.2.1 and F.2.2, 
   may also be appropriate here, but is more likely to have Data Structures and Algorithms as the primary subject area.
