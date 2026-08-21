@@ -197,7 +197,7 @@ lmlm/
 ```
 ⸻
 
-```Rmd
+```RECONSTRUCT.md
 
 # Hello!
 Below you can find a outline of how to reproduce my solution for the <Competition Name> competition.
