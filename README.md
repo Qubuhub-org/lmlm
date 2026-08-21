@@ -193,10 +193,11 @@ lmlm/
 ```
 ⸻
 
-```markdown
-#>Hello!>
+```Rmd
+
+# Hello!
 Below you can find a outline of how to reproduce my solution for the <Competition Name> competition.
-If you run into any trouble with the setup/code or have any questions please contact me at <email>
+If you run into any trouble with the setup/code or have any questions please contact me at <webapp4@outlook.com>
 
 > #ARCHIVE CONTENTS
 kaggle_model.tgz          : original kaggle model upload - contains original code, additional training examples, corrected labels, etc
