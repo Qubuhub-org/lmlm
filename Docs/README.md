@@ -1,5 +1,6 @@
-   #  [Documentation[lmlmstudio](file:///private/var/containers/Bundle/Application/61352102-115D-4798-934E-1E7EB868B788/stable.app/error_page_loaded.html?url=https://github.com/Web4application/lmlm/edit/main/PromptStudio.html&dontLoad=true)
-   #  [Documentation[lmlmstudio](file:///private/var/containers/Bundle/Application/61352102-115D-4798-934E-1E7EB868B788/stable.app/error_page_loaded.html?url=https://github.com/Web4application/lmlm/edit/main/PromptStudio.html&dontLoad=true)
+# [Documentation lmlmstudio](file:///private/var/containers/Bundle/Application/61352102-115D-4798-934E-1E7EB868B788/stable.app/error_page_loaded.html?url=https://github.com/Web4application/lmlm/edit/main/PromptStudio.html&dontLoad=true)
+
+# ![lmlmstudio](file:///private/var/containers/Bundle/Application/61352102-115D-4798-934E-1E7EB868B788/stable.app/error_page_loaded.html?url=https://github.com/Web4application/lmlm/edit/main/PromptStudio.html&dontLoad=true)]
 
 # lmlm 
 
