@@ -72,3 +72,6 @@
 
 - [openapi](/api-reference/openapi.json)
 - [openapi](/openapi.yaml)
+
+
+[ollama](docs.ollama.com)
