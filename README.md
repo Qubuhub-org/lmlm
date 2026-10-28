@@ -21,6 +21,8 @@ doc: Local Multi-Language Model # Local Multi-Language model
 ╔╗  ╔═╗  ╔╗  ╔═╗  ✦ NEW INVENTION EDITION ✦
 ╠╩╗ ╠═╣  ╠╩╗ ╠═╣  ─────────────────────────
 ╚═╝ ╩ ╩  ╚═╝ ╩ ╩
+—-
+[![Build the documentation](https://github.com/Qubuhub-org/lmlm/actions/workflows/build-doc.yml/badge.svg)](https://github.com/Qubuhub-org/lmlm/actions/workflows/build-doc.yml)
 
  # Modular AI & Memory Matrix
 
