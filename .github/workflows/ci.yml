@@ -1,0 +1,27 @@
+name: LMLM CI
+
+on:
+  pull_request:
+  push:
+    branches: ["main", "audit/remediation-2026-10"]
+
+permissions:
+  contents: read
+
+jobs:
+  node-api:
+    name: Node API tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Install dependencies
+        run: npm install --no-audit --no-fund
+      - name: Check JavaScript syntax
+        run: node --check server.js
+      - name: Run regression tests
+        run: npm test
+      - name: Build container image
+        run: docker build --tag lmlm-api:test .
