@@ -38,7 +38,7 @@ docker run --rm -p 3000:3000 lmlm-api
 To permit a frontend hosted on another origin, configure the allowlist explicitly, for example:
 
 ```bash
-CORS_ORIGINS="http://localhost:5173,https://your-approved-domain.example" npm start
+CORS_ORIGINS="http://localhost:5173,https://lmlm.dev" npm start
 ```
 
 Replace the example domain with a domain you control before deployment.
