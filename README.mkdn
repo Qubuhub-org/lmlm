@@ -1,0 +1,76 @@
+# LMLM — Local Multi-Language AI Model
+
+LMLM is a repository for local-AI experiments, model-training utilities, a small Node.js API, worker examples, notebooks, and project documentation.
+
+> Repository scope note: this repository contains multiple research artifacts and runtime experiments. Not every experiment is a packaged feature or covered by the same dependency environment.
+
+## Current API service
+
+The root Node.js service exposes:
+
+- `GET /healthz` — service health check.
+- `POST /api/chat` — a **mock chat endpoint** for integration testing. It echoes a validated message and does not call a model provider.
+- `GET /api/joke` — a validated proxy to the JokeAPI service.
+
+The API uses an origin allowlist. Set `CORS_ORIGINS` to a comma-separated list of permitted browser origins before deployment. The default permits only local development origins.
+
+### Run locally
+
+Requirements: Node.js 20 or newer.
+
+```bash
+git clone https://github.com/Qubuhuborg/lmlm.git
+cd lmlm
+npm install
+npm test
+npm start
+```
+
+The API listens on port `3000` by default. Set `PORT` to change it.
+
+### Run in Docker
+
+```bash
+docker build -t lmlm-api .
+docker run --rm -p 3000:5173 lmlm-api
+```
+
+To permit a frontend hosted on another origin, configure the allowlist explicitly, for example:
+
+```shell
+macOS(Bash/Zsh)CORS_ORIGINS="http://localhost:5173,https://lmlm.dev" npm start
+Windows(PowerShell)	$env:CORS_ORIGINS="http://localhost:5173,https://lmlm.dev"; npm start
+Windows(Command Prompt / CMD)set CORS_ORIGINS="http://localhost:5173,https://lmlm.dev" && npm start
+```
+```env
+CORS_ORIGINS="http://localhost:5173,https://lmlm.dev" npm start
+```
+
+Replace the example domain with a domain you control before deployment.
+
+## Repository map
+
+- `server.js` — Node.js API implementation.
+- `server.test.js` — API regression tests.
+- `worker.js` — Cloudflare Workers service-binding example.
+- `Lmlm/` — model-training utilities and experiments.
+- `Model/` and `Modelfile/` — model configuration examples.
+- `docs/` — static project documentation.
+- `*.ipynb` and related data/model files — research notebooks and artifacts.
+
+## Python research environment
+
+The root `requirements.txt` contains legacy pinned dependencies. It is **not** the dependency manifest for the Node API, and installing it into a modern Python environment may fail or introduce compatibility/security concerns. Before running model-training experiments, create an isolated environment and establish a tested, experiment-specific dependency set. Do not upgrade the legacy pins in bulk without validating the notebooks and training scripts that depend on them.
+
+The Python training utilities may require datasets, model checkpoints, and hardware-specific packages not installed by the Node setup. Training and inference support should be treated as unverified until the corresponding workflows and tests pass.
+
+## Security
+
+- Do not commit API keys, Kaggle tokens, populated environment files, or other credentials.
+- Use environment variables or a secret manager for runtime credentials.
+- If a credential was committed previously, rotate it at the issuing provider; deleting it from the current file does not remove historical copies.
+- Review [SECURITY.md](SECURITY.md) and [the remediation notes](docs/REMEDIATION.md) before deploying.
+
+## CI and documentation
+
+GitHub Actions validates the Node API syntax and regression tests, builds the API container, validates the static documentation, and publishes only the `docs/` directory to GitHub Pages. These checks do not certify the Python, Java, Swift, notebook, or model-training experiments.

@@ -1,4 +1,3 @@
-
 from ..base import BasePatch
 from .base import BaseHQQHFModel
 from tqdm import tqdm
