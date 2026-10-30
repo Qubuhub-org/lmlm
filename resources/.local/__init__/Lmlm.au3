@@ -66,4 +66,3 @@ set logText to "Lmlm Report:" & return & ¬
 set logFileRef to open for access file logFile with write permission
 write logText to logFileRef starting at 0
 close access logFileRef
-
