@@ -19,7 +19,7 @@ The API uses an origin allowlist. Set `CORS_ORIGINS` to a comma-separated list o
 Requirements: Node.js 20 or newer.
 
 ```bash
-git clone https://github.com/Qubuhub-org/lmlm.git
+git clone https://github.com/Qubuhuborg/lmlm.git
 cd lmlm
 npm install
 npm test
@@ -32,7 +32,7 @@ The API listens on port `3000` by default. Set `PORT` to change it.
 
 ```bash
 docker build -t lmlm-api .
-docker run --rm -p 3000:3000 lmlm-api
+docker run --rm -p 3000:5173 lmlm-api
 ```
 
 To permit a frontend hosted on another origin, configure the allowlist explicitly, for example:
