@@ -73,7 +73,4 @@ Browsing a table using a bookmarklet
 When a bookmark has the same name as the table, it will be used as the query when browsing
 this table.
 
-.. seealso::
-
-    :ref:`faqbookmark`,
-    :ref:`faq6_22`
+.. seealso::  :ref:`faqbookmark`,  :ref:`faq6_22`
