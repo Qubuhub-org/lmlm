@@ -1,4 +1,4 @@
-# LMLM — Local Multi-Language AI Model
+# LMLM — Local Multimodal AI Model
 
 LMLM is a repository for local-AI experiments, model-training utilities, a small Node.js API, worker examples, notebooks, and project documentation.
 
