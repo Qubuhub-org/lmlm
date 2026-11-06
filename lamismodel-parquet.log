@@ -1,0 +1,10 @@
+20.2s 1 /benchmarks/.venv/lib/python3.11/site-packages/traitlets/traitlets.py:2930: FutureWarning: --Exporter.preprocessors=["remove_papermill_header.RemovePapermillHeader"] for containers is deprecated in traitlets 5.0. You can pass `--Exporter.preprocessors item` ... multiple times to add items to a list.
+20.2s 2 warn(
+20.3s 3 [NbConvertApp] Converting notebook __notebook__.ipynb to notebook
+20.7s 4 [NbConvertApp] Writing 157212 bytes to __notebook__.ipynb
+23.8s 5 /benchmarks/.venv/lib/python3.11/site-packages/traitlets/traitlets.py:2930: FutureWarning: --Exporter.preprocessors=["nbconvert.preprocessors.ExtractOutputPreprocessor"] for containers is deprecated in traitlets 5.0. You can pass `--Exporter.preprocessors item` ... multiple times to add items to a list.
+23.8s 6 warn(
+23.9s 7 [NbConvertApp] Converting notebook __notebook__.ipynb to html
+24.9s 8 /benchmarks/.venv/share/jupyter/nbconvert/templates/base/display_priority.j2:32: UserWarning: Your element with mimetype(s) dict_keys([]) is not able to be represented.
+24.9s 9 {%- elif type == 'text/vnd.mermaid' -%}
+24.9s 10 [NbConvertApp] Writing 392264 bytes to __results__.html

@@ -16,8 +16,7 @@
 """
 Fine-tuning the library models for masked language modeling (BERT, ALBERT, RoBERTa...) on a text file or a dataset.
 
-Here is the full list of checkpoints on the hub that can be fine-tuned by this script:
-https://github.com/Web4application/lmlm?filter=fill-mask
+This is a legacy fine-tuning example. Check the canonical repository README for project-specific setup guidance.
 """
 # You can also adapt this script on your own masked language modeling task. Pointers for this are left as comments.
 

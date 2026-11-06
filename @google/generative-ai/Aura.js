@@ -65,7 +65,7 @@ async function run() {
       {
         role: "user",
         parts: [
-          {text: "I need a write up for my wife who wants to invest in cryptocurrency I want to convince her "},
+          {text: "I need a write up for my investor who wants to invest in fadaka cryptocurrency I want to convince them "},
         ],
       },
       {

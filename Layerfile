@@ -1,6 +1,7 @@
-FROM vm/node:14
-COPY . .
+FROM vm/node:22
+COPY ...
 RUN npm install
 RUN npm run build
 RUN BACKGROUND npm run start
-EXPOSE WEBSITE localhost:5000
+EXPOSE WEBSITE localhost:5173
+

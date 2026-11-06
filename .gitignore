@@ -1,0 +1,30 @@
+# Secrets and local environment
+.env
+.env.*
+!.env.example
+.kaggle/access_token
+.kaggle/access_token/*
+!.kaggle/access_token/Bash.sh
+
+# JavaScript
+node_modules/
+npm-debug.log*
+coverage/
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.pytest_cache/
+.mypy_cache/
+
+# Notebook/editor state
+.ipynb_checkpoints/
+.DS_Store
+.vscode/.ropeproject/
+
+# Local runtime output
+*.log
+dist/
+build/
