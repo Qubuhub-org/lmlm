@@ -1,4 +1,6 @@
-# LMLM — Local Multimodal AI Model
+[![LMLM CI](https://github.com/Qubuhub-org/lmlm/actions/workflows/ci.yml/badge.svg)](https://github.com/Qubuhub-org/lmlm/actions/workflows/ci.yml)
+
+ # LMLM — Local Multimodal AI Model
 
 LMLM is a repository for local-AI experiments, model-training utilities, a small Node.js API, worker examples, notebooks, and project documentation.
 
