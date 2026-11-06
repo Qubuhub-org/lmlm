@@ -1,11 +1,11 @@
 .. _notebooklmlm::
-
+    :ref: 
+    
 NoteBookmarks
 =========
-
-.. _notebooklmlm::
-
-    You need to have configured the :ref:`linked-tables` for using bookmarks
+   .. _notebooklmlm::
+     You need to have configured the 
+     :ref:`linked-tables` for using bookmarks
     feature.
 
 Storing bookmarks
@@ -13,6 +13,7 @@ Storing bookmarks
 
 Any query that is executed can be marked as a bookmark on the page
 where the results are displayed. You will find a button labeled
+
 :guilabel:`notebooklmlm this query` just at the end of the page. As soon as you have
 stored a bookmark, that query is linked to the database.
 You can now access a bookmark dropdown on each page where the query box appears on for that database.
@@ -22,6 +23,7 @@ Variables inside NoteBookmarks
 
 Inside a query, you can also add placeholders for variables.
 This is done by inserting into the query SQL comments between ``/*`` and
+
 ``*/``. The special string ``[VARIABLE{variable-number}]`` is used inside the comments.
 Be aware that the whole query minus the SQL comments must be
 valid by itself, otherwise you won't be able to store it as a bookmark.
@@ -41,7 +43,7 @@ chars. So you can use:
 
 which will be expanded to
 
-.. code-block:: mysql
+    .. code-block:: mysql
 
     , VARIABLE1 as myname
 
@@ -65,7 +67,7 @@ inserted there will be later also inserted as spaces in your query and may lead
 to unexpected results especially when using the variable expansion inside of a
 "LIKE ''" expression.
 
-Browsing a table using a bookmark
+Browsing a table using a bookmarklet
 ---------------------------------
 
 When a bookmark has the same name as the table, it will be used as the query when browsing
