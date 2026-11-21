@@ -54,6 +54,10 @@ class TokenizerTests(unittest.TestCase):
             [BOS_TOKEN_ID, ord("A") + 4, EOS_TOKEN_ID],
         )
 
+    def test_token_byte_length(self):
+        self.assertEqual(self.tokenizer.token_byte_length(ord("A") + 4), 1)
+        self.assertEqual(self.tokenizer.token_byte_length(1), 0)
+
     def test_out_of_range_token_is_rejected(self):
         with self.assertRaises(ValueError):
             self.tokenizer.validate_ids([9999])
@@ -85,6 +89,10 @@ class BPETokenizerTests(unittest.TestCase):
         self.assertIsInstance(restored, BPETokenizer)
         self.assertEqual(restored.merges, tokenizer.merges)
         self.assertEqual(restored.decode(restored.encode(self.text)), self.text)
+
+    def test_token_byte_length_tracks_merged_payload(self):
+        tokenizer = BPETokenizer.train("banana banana", vocab_size=280, min_frequency=2)
+        self.assertTrue(any(tokenizer.token_byte_length(i) > 1 for i in range(BASE_VOCAB_SIZE, tokenizer.vocab_size)))
 
     def test_invalid_merge_vocabulary_is_rejected(self):
         with self.assertRaises(ValueError):
@@ -189,6 +197,7 @@ class ModelTests(unittest.TestCase):
             for kind in ("byte", "bpe"):
                 result = report["runs"][kind]
                 self.assertGreater(result["test"]["perplexity"], 0)
+                self.assertGreater(result["test"]["bits_per_byte"], 0)
                 self.assertEqual(result["periodic_checkpoints"], 2)
                 self.assertTrue((output / kind / "history.jsonl").exists())
                 self.assertTrue((output / kind / "final.pt").exists())
