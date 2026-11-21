@@ -5,7 +5,7 @@ from pathlib import Path
 
 from .config import LMLMConfig
 from .model import LMLMModel
-from .runtime import LMLMRuntime, resolve_device
+from .runtime import LMLMRuntime, Tokenizer, resolve_device
 from .tokenizer import ByteTokenizer
 
 
@@ -14,12 +14,13 @@ def train_from_text(
     output_path: str | Path,
     *,
     config: LMLMConfig | None = None,
+    tokenizer: Tokenizer | None = None,
     steps: int = 100,
     batch_size: int = 8,
     learning_rate: float = 3e-4,
     seed: int = 17,
 ) -> Path:
-    """Train on a local UTF-8 text file and save an LMLM checkpoint."""
+    """Train on a local UTF-8 text file and save model plus tokenizer metadata."""
     try:
         import torch
     except ImportError as exc:
@@ -31,12 +32,15 @@ def train_from_text(
         raise ValueError("steps, batch_size, and learning_rate must be positive")
 
     text = Path(corpus_path).read_text(encoding="utf-8")
-    tokens = ByteTokenizer().encode(text)
-    selected = config or LMLMConfig()
+    selected_tokenizer = tokenizer or ByteTokenizer()
+    tokens = selected_tokenizer.encode(text)
+    selected = config or LMLMConfig(vocab_size=selected_tokenizer.vocab_size)
+    if selected.vocab_size != selected_tokenizer.vocab_size:
+        raise ValueError("model vocab_size must match the active tokenizer vocabulary")
     length = selected.context_length
     if len(tokens) < length + 1:
         raise ValueError(
-            f"Corpus needs at least {length + 1} UTF-8 bytes; received {len(tokens)}"
+            f"Corpus needs at least {length + 1} tokens; received {len(tokens)}"
         )
 
     torch.manual_seed(seed)
@@ -59,6 +63,6 @@ def train_from_text(
         optimizer.step()
 
     model.eval()
-    runtime = LMLMRuntime(model, selected, device)
+    runtime = LMLMRuntime(model, selected, device, selected_tokenizer)
     runtime.save_checkpoint(output_path)
     return Path(output_path)

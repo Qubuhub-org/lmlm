@@ -1,6 +1,6 @@
 """LMLM's local-first model core."""
 from .config import LMLMConfig
-from .tokenizer import ByteTokenizer
+from .tokenizer import BPETokenizer, ByteTokenizer
 
-__all__ = ["ByteTokenizer", "LMLMConfig"]
-__version__ = "0.1.0"
+__all__ = ["BPETokenizer", "ByteTokenizer", "LMLMConfig"]
+__version__ = "0.2.0"
