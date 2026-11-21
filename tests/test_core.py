@@ -4,6 +4,7 @@ import tempfile
 import unittest
 from pathlib import Path
 
+from lmlm_core.benchmark import split_text
 from lmlm_core.config import LMLMConfig
 from lmlm_core.tokenizer import (
     BASE_VOCAB_SIZE,
@@ -90,6 +91,25 @@ class BPETokenizerTests(unittest.TestCase):
             BPETokenizer([(999, 1000)])
 
 
+
+class BenchmarkSplitTests(unittest.TestCase):
+    def test_split_is_deterministic_disjoint_and_lossless(self):
+        corpus = "alpha\\nbeta\\ngamma\\ndelta\\nepsilon\\n" * 20
+        first = split_text(corpus)
+        second = split_text(corpus)
+        self.assertEqual(first, second)
+        self.assertEqual("".join(first), corpus)
+        self.assertTrue(all(first))
+
+    def test_invalid_ratios_are_rejected(self):
+        with self.assertRaises(ValueError):
+            split_text("abcdef", train_ratio=0.7, validation_ratio=0.2, test_ratio=0.2)
+
+    def test_too_small_corpus_is_rejected(self):
+        with self.assertRaises(ValueError):
+            split_text("ab")
+
+
 @unittest.skipUnless(importlib.util.find_spec("torch"), "PyTorch runtime is optional")
 class ModelTests(unittest.TestCase):
     def setUp(self):
@@ -140,7 +160,40 @@ class ModelTests(unittest.TestCase):
                 restored.generate("LMLM", max_new_tokens=1, top_k=8).startswith("LMLM")
             )
 
-    def test_evaluation_scores_each_next_token_once(self):
+
+    def test_benchmark_writes_train_only_tokenizer_and_held_out_metrics(self):
+        from lmlm_core.benchmark import run_benchmark
+
+        corpus = "LMLM benchmark corpus with repeated local training text. " * 80
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            source = root / "corpus.txt"
+            output = root / "results"
+            source.write_text(corpus, encoding="utf-8")
+            report = run_benchmark(
+                source,
+                output,
+                steps=2,
+                batch_size=2,
+                eval_every=1,
+                context_length=8,
+                hidden_size=16,
+                layers=1,
+                heads=4,
+                vocab_size=270,
+                min_frequency=2,
+                device="cpu",
+            )
+            self.assertEqual(set(report["runs"]), {"byte", "bpe"})
+            self.assertEqual(report["splits"]["tokenizer_fit_scope"], "training split only")
+            for kind in ("byte", "bpe"):
+                result = report["runs"][kind]
+                self.assertGreater(result["test"]["perplexity"], 0)
+                self.assertEqual(result["periodic_checkpoints"], 2)
+                self.assertTrue((output / kind / "history.jsonl").exists())
+                self.assertTrue((output / kind / "final.pt").exists())
+            self.assertTrue((output / "benchmark.json").exists())
+\n    def test_evaluation_scores_each_next_token_once(self):
         from lmlm_core.evaluate import evaluate_text
 
         result = evaluate_text(self.runtime, "LMLM evaluation windows")
