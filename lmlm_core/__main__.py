@@ -5,6 +5,7 @@ import argparse
 import json
 from pathlib import Path
 
+from .benchmark import run_benchmark
 from .config import LMLMConfig
 from .evaluate import evaluate_file
 from .runtime import LMLMRuntime
@@ -58,6 +59,28 @@ def build_parser() -> argparse.ArgumentParser:
     evaluate.add_argument("checkpoint", type=Path)
     evaluate.add_argument("corpus", type=Path)
     evaluate.add_argument("--device", default="auto")
+
+    benchmark = commands.add_parser(
+        "benchmark", help="train and compare local byte/BPE models on held-out text"
+    )
+    benchmark.add_argument("corpus", type=Path)
+    benchmark.add_argument("--output-dir", type=Path, default=Path("artifacts/benchmark"))
+    benchmark.add_argument("--tokenizer", choices=("both", "byte", "bpe"), default="both")
+    benchmark.add_argument("--train-ratio", type=float, default=0.8)
+    benchmark.add_argument("--validation-ratio", type=float, default=0.1)
+    benchmark.add_argument("--test-ratio", type=float, default=0.1)
+    benchmark.add_argument("--steps", type=int, default=100)
+    benchmark.add_argument("--batch-size", type=int, default=8)
+    benchmark.add_argument("--learning-rate", type=float, default=3e-4)
+    benchmark.add_argument("--eval-every", type=int, default=25)
+    benchmark.add_argument("--seed", type=int, default=17)
+    benchmark.add_argument("--context-length", type=int, default=128)
+    benchmark.add_argument("--hidden-size", type=int, default=128)
+    benchmark.add_argument("--layers", type=int, default=2)
+    benchmark.add_argument("--heads", type=int, default=4)
+    benchmark.add_argument("--device", default="auto")
+    benchmark.add_argument("--vocab-size", type=int, default=512)
+    benchmark.add_argument("--min-frequency", type=int, default=2)
 
     return parser
 
