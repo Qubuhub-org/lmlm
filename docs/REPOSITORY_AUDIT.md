@@ -37,6 +37,20 @@ has been inspected.
   them. No binary backup has been opened or declared safe in this audit.
 - Enable or verify GitHub secret scanning and push protection.
 
+## Workflow cleanup
+
+- Removed `.github/workflows/django.yml`: it targeted an absent Django
+  `manage.py` project and Python 3.7–3.9 rather than the new Python 3.10+
+  core.
+- Removed `.github/workflows/Lmlm-ci.yml`: it duplicated the maintained CI,
+  installed the legacy root requirements, used an invalid setup-python input,
+  and searched for `*_test.py` while the repository test file is
+  `test_core.py`.
+- Removed `.github/workflows/lmlm.yml`: it only printed a Hello World
+  placeholder and did not validate or build LMLM.
+- Retained `.github/workflows/ci.yml`, `.github/workflows/build-doc.yml`,
+  and the GitHub Pages deployment workflow.
+
 ## Legacy or unclear assets retained
 
 These paths were not deleted because their purpose, dependencies, provenance,
