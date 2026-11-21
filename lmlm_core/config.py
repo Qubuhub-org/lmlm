@@ -4,6 +4,8 @@ from __future__ import annotations
 from dataclasses import asdict, dataclass
 from typing import Any, Mapping
 
+BYTE_TOKENIZER_VOCAB_SIZE = 260
+
 
 @dataclass(frozen=True, slots=True)
 class LMLMConfig:
@@ -11,7 +13,7 @@ class LMLMConfig:
 
     Defaults are intended for CPU experimentation, not production deployment.
     """
-    vocab_size: int = 260
+    vocab_size: int = BYTE_TOKENIZER_VOCAB_SIZE
     context_length: int = 128
     hidden_size: int = 128
     num_layers: int = 2
@@ -20,8 +22,10 @@ class LMLMConfig:
     device: str = "auto"
 
     def __post_init__(self) -> None:
-        if self.vocab_size < 260:
-            raise ValueError("vocab_size must be at least 260 for ByteTokenizer")
+        if self.vocab_size != BYTE_TOKENIZER_VOCAB_SIZE:
+            raise ValueError(
+                f"vocab_size must be {BYTE_TOKENIZER_VOCAB_SIZE} while ByteTokenizer is active"
+            )
         for name in ("context_length", "hidden_size", "num_layers", "num_heads"):
             if getattr(self, name) <= 0:
                 raise ValueError(f"{name} must be greater than zero")
@@ -40,5 +44,7 @@ class LMLMConfig:
         allowed = set(cls.__dataclass_fields__)
         unknown = set(values) - allowed
         if unknown:
-            raise ValueError("Unknown LMLM configuration field(s): " + ", ".join(sorted(unknown)))
+            raise ValueError(
+                "Unknown LMLM configuration field(s): " + ", ".join(sorted(unknown))
+            )
         return cls(**dict(values))
