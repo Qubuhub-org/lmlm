@@ -1,3 +1,11 @@
+pip install -e ".[runtime]"
+
+lmlm benchmark data/corpus.txt \
+  --output-dir artifacts/benchmark \
+  --steps 500 \
+  --eval-every 50 \
+  --seed 17 \
+  --device cpu
 curl -fsSL https://raw.githubusercontent.com/continuedev/continue/main/extensions/cli/scripts/install.sh | bash
 
 bafybeigdyrzt5sfp7udm7hu76uh7y26nf3efuylqabf3oclgtqy55fbzdi.llvms``
