@@ -1,4 +1,29 @@
-I've located the repository and confirmed that I can access it through the connected GitHub account.
+Implementation committed
+ Full CI still running
+
+I executed the next LMLM development milestone directly in your GitHub repository.
+
+New PR: #12 — Add deterministic LMLM evaluation and perplexity metrics
+What I implemented
+- lmlm_core/evaluate.py — native evaluation engine.
+- Cross-entropy loss and perplexity measurements.
+- Deterministic evaluation windows that score each next-token target once.
+- Local validation without uploading datasets or calling external providers.
+- Training seed configuration for more reproducible experiments.
+- New lmlm evaluate CLI command.
+- Tests for evaluation accuracy, token coverage and model-state restoration.
+- Updated README and reconstruction documentation.
+Verification
+Check	Status
+Python compilation	Passed
+Dependency-free core tests	Passed
+Documentation validation	Passed
+PyTorch evaluation and training tests	Running
+Node API and Docker tests	Running
+
+I have not merged PR #12 while the neural-runtime and Docker checks remain unfinished.
+
+Next milestone: use held-out datasets to benchmark LMLM, measure actual learning progress, and establish a reproducible model-quality baseline before expanding into multimodal capabilities.
 
 Public repository
 
