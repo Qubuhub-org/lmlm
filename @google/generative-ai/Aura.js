@@ -11,7 +11,10 @@ const {
 } = require("@google/generative-ai");
 
 const apiKey = process.env.GEMINI_API_KEY;
-const genAI = new GoogleGenerativeAI(AIzaSyDMqMlf92Nhxd7-EzRsWRwtsycxbDzFpkA);
+if (!apiKey) {
+  throw new Error("Set GEMINI_API_KEY in the environment before using Aura.");
+}
+const genAI = new GoogleGenerativeAI(apiKey);
 
 const model = genAI.getGenerativeModel({
   model: "aura",
