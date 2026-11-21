@@ -40,3 +40,22 @@ ollama push lmlm/Ollama.ai
 # Example: Add this to your Modelfile to teach it about your specific database
 MESSAGE user "What is the schema for our user table?"
 MESSAGE assistant "The 'users' table has four columns: id (INT), username (VARCHAR), email (VARCHAR), and created_at (TIMESTAMP)."
+
+
+# Download dependencies
+go mod download
+
+# Run the main package tests
+go test .
+
+# Run all packages (includes the intentionally failing test)
+go test ./...
+
+# Build the module
+go build ./...
+
+# Inspect dependencies
+go list -m all
+
+# Check module dependencies
+go mod graph
