@@ -45,6 +45,9 @@ production model exists.
 - Small-corpus trainer and CLI support both byte and BPE tokenizers.
 - Deterministic validation evaluator reports next-token cross-entropy, perplexity, target-token count, and evaluation-window count. It scores each target once using contiguous context windows.
 - Training accepts an explicit random seed (default 17); exact cross-device bitwise reproducibility is not promised.
+- Leakage-aware benchmark runner creates deterministic contiguous train/validation/test splits and fits BPE only on training text.
+- Periodic checkpoints and JSONL training/validation history are written at configured evaluation intervals.
+- Benchmark reports include validation/test loss, perplexity, token counts, and bits-per-byte normalized by scored UTF-8 bytes.
 - CPU execution, with CUDA and Apple MPS selected when available.
 
 ## Validation
@@ -53,6 +56,7 @@ GitHub Actions runs:
 - Python compile checks and dependency-free tokenizer/configuration tests.
 - CPU PyTorch forward-pass tests.
 - Evaluation tests for token coverage, finite metrics, short-input rejection, and restoration of model train/eval mode.
+- Benchmark tests for deterministic non-overlapping splits, invalid split ratios, byte accounting, and byte/BPE end-to-end held-out evaluation.
 - Tiny-corpus byte-tokenized training, checkpoint reload, and generation.
 - Tiny-corpus BPE-tokenized training, checkpoint reload, and generation.
 - Existing Node API tests, syntax checks, and Docker image build.
@@ -67,7 +71,8 @@ GitHub Actions runs:
   action modalities need separately designed encoders/decoders and data
   contracts.
 - The model must be trained on a suitable corpus before its output is useful.
-- Perplexity comparisons are meaningful only when tokenizer and evaluation corpus are held constant.
+- Perplexity comparisons are meaningful only when tokenizer and evaluation corpus are held constant; bits-per-byte is the normalized cross-tokenizer comparison metric.
+- Default benchmark splits are contiguous character ranges. Multi-document corpora should be split by document/group before benchmarking to avoid related documents crossing boundaries.
 - No production-trained checkpoint is included.
 - The existing Node `/api/chat` endpoint remains a mock and is not connected
   to this neural runtime.
