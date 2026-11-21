@@ -8,7 +8,7 @@ a license opinion or a claim that every artifact has been inspected.
 
 | Path | Observed purpose | Disposition |
 |---|---|---|
-| `lmlm_core/` | Native text-model baseline: byte tokenizer, learned BPE tokenizer, causal decoder, runtime, trainer | Active reconstruction core |
+| `lmlm_core/` | Native text-model baseline: byte tokenizer, learned BPE tokenizer, causal decoder, runtime, trainer, deterministic evaluator | Active reconstruction core |
 | `server.js` | Node API with health route and explicitly mocked chat route | Retain; not neural inference |
 | `Lmlm/runlmlm.py` | Legacy Hugging Face masked-language-model fine-tuning example | Retain as legacy experiment; not the native core |
 | `Model/config.yaml` | Qwen 2.5 Coder model name and localhost inference endpoint | Treat as an optional local-model adapter configuration, not LMLM's model definition |
@@ -85,8 +85,10 @@ or redistribution rights have not been fully established:
 1. Benchmark the BPE tokenizer on a representative, owner-approved corpus and
    improve training efficiency before large-corpus use.
 2. Add validation loss/perplexity and reproducible model evaluation.
-3. Design memory and multimodal data contracts before adding image, audio,
+3. Benchmark tokenizer behavior and add a held-out corpus evaluation protocol;
+   compare perplexity only with fixed tokenizer and dataset.
+4. Design memory and multimodal data contracts before adding image, audio,
    video, spatial, or action modules.
-4. Add resource-aware CPU/GPU profiling and checkpoint compatibility tests.
-5. Resolve repository-wide licensing and artifact provenance before
+5. Add resource-aware CPU/GPU profiling and checkpoint compatibility tests.
+6. Resolve repository-wide licensing and artifact provenance before
    redistributing legacy binaries, notebooks, datasets, or imported code.
