@@ -106,6 +106,17 @@ The new Python core and legacy Python experiments have separate dependency
 sets. Do not install the root legacy `requirements.txt` into the core
 environment; many of its pins come from older Python ecosystems.
 
+## Environment variables
+
+The optional legacy Gemini adapter reads `GEMINI_API_KEY` from the process
+environment. Set it in the shell or an approved secret manager before running
+that adapter. The core model does not require this key or call Gemini.
+`.env.example` documents the variable name; it is not an automatic dotenv
+loader.
+
+Never commit populated environment files or credentials. See
+[SECURITY.md](SECURITY.md).
+
 ## Repository map
 
 - `lmlm_core/` — native tokenizer, configuration, model, runtime, and trainer.
@@ -115,14 +126,12 @@ environment; many of its pins come from older Python ecosystems.
   experiments retained pending provenance and integration review.
 - `server.js` — existing Node API; its chat route is explicitly a mock.
 
-## Security and ownership
-
-Never commit populated environment files or credentials. Use environment
-variables or a secret manager for runtime configuration. See [SECURITY.md](SECURITY.md).
+## Ownership and legacy assets
 
 The repository contains historical assets and mixed license notices. Their
 presence is not proof of ownership or redistribution rights. Review provenance
-and licensing before packaging or redistributing them.
+and licensing before packaging or redistributing them. Legacy research files
+are being inventoried before any deletion.
 
 ## Roadmap
 
