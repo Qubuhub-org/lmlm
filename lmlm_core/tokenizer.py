@@ -46,6 +46,12 @@ class ByteTokenizer:
                 raise ValueError(f"token ID out of range: {token_id}")
         return payload.decode("utf-8", errors="replace")
 
+    def token_byte_length(self, token_id: int) -> int:
+        """Return the UTF-8 payload bytes represented by one token ID."""
+        if not isinstance(token_id, int) or not 0 <= token_id < self.vocab_size:
+            raise ValueError(f"invalid token ID: {token_id!r}")
+        return 1 if token_id >= BYTE_OFFSET else 0
+
     def validate_ids(self, token_ids: Iterable[int]) -> list[int]:
         result = list(token_ids)
         for token_id in result:
@@ -159,6 +165,12 @@ class BPETokenizer(ByteTokenizer):
                 raise ValueError(f"token ID is reserved: {token_id}")
             payload.extend(token_bytes)
         return payload.decode("utf-8", errors="replace")
+
+    def token_byte_length(self, token_id: int) -> int:
+        """Return original UTF-8 payload bytes represented by a BPE token."""
+        if not isinstance(token_id, int) or not 0 <= token_id < self.vocab_size:
+            raise ValueError(f"invalid token ID: {token_id!r}")
+        return len(self._token_bytes[token_id] or b"")
 
     def to_dict(self) -> dict:
         return {"type": "bpe", "merges": [list(pair) for pair in self.merges]}
