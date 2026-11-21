@@ -9,6 +9,10 @@ class ConfigTests(unittest.TestCase):
     def test_default_vocabulary_matches_tokenizer(self):
         self.assertEqual(LMLMConfig().vocab_size, ByteTokenizer.vocab_size)
 
+    def test_tokenizer_vocabulary_mismatch_is_rejected(self):
+        with self.assertRaises(ValueError):
+            LMLMConfig(vocab_size=512)
+
     def test_invalid_head_dimension_is_rejected(self):
         with self.assertRaises(ValueError):
             LMLMConfig(hidden_size=127, num_heads=4)
