@@ -26,9 +26,11 @@ production model exists.
   The reconstruction branch removes the literal and requires
   `GEMINI_API_KEY`. The credential must still be revoked/rotated because
   source cleanup does not invalidate historical copies.
-- Some documentation templates and research assets visibly refer to other
-  projects. They are retained pending a file-by-file provenance and dependency
-  review.
+- The Discord.py documentation template and Python documentation landing
+  template were confirmed unrelated to LMLM and replaced/removed in this
+  branch. Other legacy research assets remain under provenance and dependency
+  review. The large legacy `docs/website/Index.md` file is retained but is not
+  linked from the current documentation landing page.
 - An older pull request proposes merging `main` into `Runtime`. This
   reconstruction branch is based on `main` and does not alter that PR or the
   `Runtime` branch.
