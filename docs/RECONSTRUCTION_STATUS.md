@@ -43,6 +43,8 @@ production model exists.
 - Local checkpoint save/load supports the original byte-tokenizer checkpoint
   format and the newer tokenizer-aware format.
 - Small-corpus trainer and CLI support both byte and BPE tokenizers.
+- Deterministic validation evaluator reports next-token cross-entropy, perplexity, target-token count, and evaluation-window count. It scores each target once using contiguous context windows.
+- Training accepts an explicit random seed (default 17); exact cross-device bitwise reproducibility is not promised.
 - CPU execution, with CUDA and Apple MPS selected when available.
 
 ## Validation
@@ -50,6 +52,7 @@ production model exists.
 GitHub Actions runs:
 - Python compile checks and dependency-free tokenizer/configuration tests.
 - CPU PyTorch forward-pass tests.
+- Evaluation tests for token coverage, finite metrics, short-input rejection, and restoration of model train/eval mode.
 - Tiny-corpus byte-tokenized training, checkpoint reload, and generation.
 - Tiny-corpus BPE-tokenized training, checkpoint reload, and generation.
 - Existing Node API tests, syntax checks, and Docker image build.
@@ -64,6 +67,7 @@ GitHub Actions runs:
   action modalities need separately designed encoders/decoders and data
   contracts.
 - The model must be trained on a suitable corpus before its output is useful.
+- Perplexity comparisons are meaningful only when tokenizer and evaluation corpus are held constant.
 - No production-trained checkpoint is included.
 - The existing Node `/api/chat` endpoint remains a mock and is not connected
   to this neural runtime.

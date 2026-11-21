@@ -1,4 +1,5 @@
 import importlib.util
+import math
 import tempfile
 import unittest
 from pathlib import Path
@@ -91,6 +92,14 @@ class BPETokenizerTests(unittest.TestCase):
 
 @unittest.skipUnless(importlib.util.find_spec("torch"), "PyTorch runtime is optional")
 class ModelTests(unittest.TestCase):
+    def setUp(self):
+        from lmlm_core.runtime import LMLMRuntime
+
+        config = LMLMConfig(
+            context_length=8, hidden_size=16, num_layers=1, num_heads=4, dropout=0
+        )
+        self.runtime = LMLMRuntime.create_untrained(config)
+
     def test_forward_returns_logits_and_loss(self):
         import torch
         from lmlm_core.model import LMLMModel
@@ -130,6 +139,29 @@ class ModelTests(unittest.TestCase):
             self.assertTrue(
                 restored.generate("LMLM", max_new_tokens=1, top_k=8).startswith("LMLM")
             )
+
+    def test_evaluation_scores_each_next_token_once(self):
+        from lmlm_core.evaluate import evaluate_text
+
+        result = evaluate_text(self.runtime, "LMLM evaluation windows")
+        expected = len(self.runtime.tokenizer.encode("LMLM evaluation windows")) - 1
+        self.assertEqual(result["token_count"], expected)
+        self.assertEqual(result["sequence_count"], math.ceil(expected / 8))
+        self.assertTrue(math.isfinite(result["loss"]))
+        self.assertGreater(result["perplexity"], 0)
+
+    def test_evaluation_rejects_too_short_text(self):
+        from lmlm_core.evaluate import evaluate_text
+
+        with self.assertRaises(ValueError):
+            evaluate_text(self.runtime, "")
+
+    def test_evaluation_does_not_leave_model_in_training_mode(self):
+        from lmlm_core.evaluate import evaluate_text
+
+        self.runtime.model.train()
+        evaluate_text(self.runtime, "evaluation mode restoration")
+        self.assertTrue(self.runtime.model.training)
 
 
 if __name__ == "__main__":
