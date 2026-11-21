@@ -1,3 +1,4 @@
+import importlib.util
 import unittest
 
 from lmlm_core.config import LMLMConfig
@@ -42,6 +43,23 @@ class TokenizerTests(unittest.TestCase):
     def test_non_string_input_is_rejected(self):
         with self.assertRaises(TypeError):
             self.tokenizer.encode(123)
+
+
+@unittest.skipUnless(importlib.util.find_spec("torch"), "PyTorch runtime is optional")
+class ModelTests(unittest.TestCase):
+    def test_forward_returns_logits_and_loss(self):
+        import torch
+        from lmlm_core.model import LMLMModel
+
+        config = LMLMConfig(
+            context_length=8, hidden_size=16, num_layers=1, num_heads=4, dropout=0
+        )
+        model = LMLMModel(config)
+        inputs = torch.randint(0, config.vocab_size, (2, 8))
+        targets = torch.randint(0, config.vocab_size, (2, 8))
+        logits, loss = model(inputs, targets)
+        self.assertEqual(tuple(logits.shape), (2, 8, config.vocab_size))
+        self.assertTrue(torch.isfinite(loss).item())
 
 
 if __name__ == "__main__":
