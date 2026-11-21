@@ -4,8 +4,8 @@
 
 This document records the first reconstruction pass. The objective is to make
 the in-built model core explicit and independently testable without deleting
-historical research files whose purpose or redistribution rights have not been
-established.
+historical research files whose purpose or redistribution rights have not
+been established.
 
 LMLM is treated as the model itself: a local-first, in-built multimodal model
 family and runtime. This first code increment is a text-only decoder baseline;
@@ -22,6 +22,10 @@ production model exists.
   remains separate from the new package to avoid breaking legacy experiments.
 - The tracked root `.env` contains a malformed CORS setting followed by a
   shell command. It is not an API credential, but should not be tracked.
+- `@google/generative-ai/Aura.js` contained a hard-coded Google AI API key.
+  The reconstruction branch removes the literal and requires
+  `GEMINI_API_KEY`. The credential must still be revoked/rotated because
+  source cleanup does not invalidate historical copies.
 - Some documentation templates and research assets visibly refer to other
   projects. They are retained pending a file-by-file provenance and dependency
   review.
@@ -33,11 +37,15 @@ production model exists.
 
 - A dependency-light Python package named `lmlm-core`.
 - A deterministic UTF-8 byte tokenizer with reserved control tokens.
-- A validated native model configuration.
+- A validated native model configuration whose vocabulary size is locked to
+  the active byte tokenizer.
 - A causal decoder transformer implemented with optional PyTorch.
 - Local checkpoint save/load and autoregressive generation.
 - A small-corpus training loop and CLI.
-- Unit tests for configuration and tokenizer behavior.
+- Unit tests for configuration and tokenizer behavior, plus an optional
+  PyTorch model forward-pass test.
+- Python core compilation and unit tests in GitHub Actions.
+- Environment-based credential handling for the existing Gemini adapter.
 
 ## Deliberate limitations
 
@@ -50,7 +58,9 @@ production model exists.
 - PyTorch is optional for package installation but required for model training
   and inference. CPU is supported; CUDA and Apple MPS are selected when present.
 - This new core does not call remote providers or depend on external model
-  registries.
+  registries. The legacy Gemini adapter is separate from the core.
+- No production-trained checkpoint is included. The PyTorch forward-pass test
+  is skipped when PyTorch is not installed.
 
 ## Not removed in this increment
 
