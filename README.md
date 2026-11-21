@@ -79,6 +79,42 @@ not used for training; otherwise the result is not a meaningful generalization
 estimate. Perplexity is only comparable across models evaluated on the same
 tokenization and dataset.
 
+## Reproducible benchmark pipeline
+
+Run a local byte/BPE comparison from one UTF-8 corpus:
+
+```bash
+lmlm benchmark data/corpus.txt --output-dir artifacts/benchmark \
+  --steps 500 --eval-every 50 --seed 17 --device cpu
+```
+
+The command makes deterministic, contiguous, non-overlapping train/validation/test
+character splits (80/10/10 by default). The BPE vocabulary is fitted on the
+training split only. Validation data is used for periodic monitoring; the test
+split is evaluated only after training and is not used for model selection.
+The split manifest records character counts and SHA-256 hashes without copying
+the source corpus into the output directory.
+
+Each tokenizer run writes:
+
+- `final.pt` — final model checkpoint.
+- `checkpoints/step-*.pt` — periodic model checkpoints at validation intervals.
+- `history.jsonl` — interval training loss and validation loss/perplexity.
+- Validation and held-out test metrics in the top-level `benchmark.json`.
+
+The report includes cross-entropy, perplexity, scored token counts, and
+**bits-per-byte**. Bits-per-byte normalizes next-token negative log likelihood
+by the UTF-8 bytes represented by scored target tokens, making byte/BPE
+comparisons more meaningful. Perplexity and token counts remain tokenizer-
+dependent and should not be compared directly across different tokenizers.
+Use the same corpus, split ratios, model dimensions, training steps, and seed
+when comparing runs. The default split is a simple contiguous character split;
+for multi-document datasets, prepare document-level splits yourself to prevent
+near-duplicate or related documents crossing split boundaries.
+
+All source text and outputs stay local. The benchmark does not upload corpora
+or call remote inference providers.
+
 ## Reproducibility
 
 Training uses a configurable random seed (default `17`):
