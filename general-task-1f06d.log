@@ -1,0 +1,10 @@
+3.4s 1 [NbConvertApp] Converting notebook /kaggle/src/script.ipynb to script
+4.3s 2 [NbConvertApp] Writing 2218 bytes to /kaggle/working/general_task_1f06d.py
+73.9s 3 /benchmarks/.venv/lib/python3.11/site-packages/traitlets/traitlets.py:2930: FutureWarning: --Exporter.preprocessors=["remove_papermill_header.RemovePapermillHeader"] for containers is deprecated in traitlets 5.0. You can pass `--Exporter.preprocessors item` ... multiple times to add items to a list.
+73.9s 4 warn(
+73.9s 5 [NbConvertApp] Converting notebook __notebook__.ipynb to notebook
+74.2s 6 [NbConvertApp] Writing 64088 bytes to __notebook__.ipynb
+76.2s 7 /benchmarks/.venv/lib/python3.11/site-packages/traitlets/traitlets.py:2930: FutureWarning: --Exporter.preprocessors=["nbconvert.preprocessors.ExtractOutputPreprocessor"] for containers is deprecated in traitlets 5.0. You can pass `--Exporter.preprocessors item` ... multiple times to add items to a list.
+76.2s 8 warn(
+76.3s 9 [NbConvertApp] Converting notebook __notebook__.ipynb to html
+77.0s 10 [NbConvertApp] Writing 308896 bytes to __results__.html
