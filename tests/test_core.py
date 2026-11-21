@@ -94,7 +94,7 @@ class BPETokenizerTests(unittest.TestCase):
 
 class BenchmarkSplitTests(unittest.TestCase):
     def test_split_is_deterministic_disjoint_and_lossless(self):
-        corpus = "alpha\\nbeta\\ngamma\\ndelta\\nepsilon\\n" * 20
+        corpus = "alpha\nbeta\ngamma\ndelta\nepsilon\n" * 20
         first = split_text(corpus)
         second = split_text(corpus)
         self.assertEqual(first, second)
