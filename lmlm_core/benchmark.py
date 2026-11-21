@@ -105,7 +105,7 @@ def run_benchmark(
         "test_usage": "final evaluation only; never used for training or model selection",
     }
     (destination / "splits.json").write_text(
-        json.dumps(split_manifest, indent=2, sort_keys=True) + "\\n",
+        json.dumps(split_manifest, indent=2, sort_keys=True) + "\n",
         encoding="utf-8",
     )
 
@@ -196,7 +196,7 @@ def run_benchmark(
         ),
     }
     (destination / "benchmark.json").write_text(
-        json.dumps(report, indent=2, sort_keys=True, allow_nan=False) + "\\n",
+        json.dumps(report, indent=2, sort_keys=True, allow_nan=False) + "\n",
         encoding="utf-8",
     )
     return report
