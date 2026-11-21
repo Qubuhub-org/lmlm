@@ -1,14 +1,14 @@
-> ## Documentation Index
+## Documentation Index
 > Fetch the complete documentation index at: https://docs.ollama.com/llms.txt
 > Use this file to discover all available pages before exploring further.
 
-> # Hermes Agent
+# Hermes Agent
 
 Hermes Agent is a self-improving AI agent built by Nous Research. It features automatic skill creation, cross-session memory, and 70+ skills that it ships with by default.
 
 <img src="https://mintcdn.com/ollama-9269c548/_5fHmJyR9RXyOCBa/images/hermes.png?fit=max&auto=format&n=_5fHmJyR9RXyOCBa&q=85&s=760b90a13b4f22ea9cdfc9ca69f78184" alt="Hermes Agent with Ollama" width="2232" height="2162" data-path="images/hermes.png" />
 
-> ## Quick start
+## Quick start
 
 ```bash theme={"system"}
 ollama launch hermes
@@ -23,7 +23,7 @@ Ollama handles everything automatically:
 
 <Note>Hermes on Windows requires WSL2. Install it with `wsl --install` and re-run from inside the WSL shell.</Note>
 
-> ## Recommended models
+## Recommended models
 
 **Cloud models**:
 
@@ -72,8 +72,7 @@ How would you like to set up Hermes?
  →  Quick setup — provider, model & messaging (recommended)
     Full setup — configure everything
 ```
-
-> ### Connect to Ollama
+ ### Connect to Ollama
 
 1. Select **More providers...**
 
@@ -105,7 +104,7 @@ How would you like to set up Hermes?
    Context length in tokens [leave blank for auto-detect]:
    ```
 
-> ### Connect messaging
+### Connect messaging
 
 Optionally connect a messaging platform during setup:
 
@@ -116,7 +115,7 @@ Connect a messaging platform? (Telegram, Discord, etc.)
     Skip — set up later with 'hermes setup gateway'
 ```
 
-> ### Launch
+ ### Launch
 
 ```
 Launch hermes chat now? [Y/n]: Y
