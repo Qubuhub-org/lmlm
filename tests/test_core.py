@@ -202,7 +202,8 @@ class ModelTests(unittest.TestCase):
                 self.assertTrue((output / kind / "history.jsonl").exists())
                 self.assertTrue((output / kind / "final.pt").exists())
             self.assertTrue((output / "benchmark.json").exists())
-\n    def test_evaluation_scores_each_next_token_once(self):
+
+    def test_evaluation_scores_each_next_token_once(self):
         from lmlm_core.evaluate import evaluate_text
 
         result = evaluate_text(self.runtime, "LMLM evaluation windows")
