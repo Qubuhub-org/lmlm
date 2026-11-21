@@ -1,5 +1,4 @@
->
-> tool use enables lmlm to request calls to external functions and APIs through the `/v1/chat/completions` and `v1/responses` endpoints ([Learn more](/docs/developer/openai-compat)), via LM Studio's REST API (or via any OpenAI client). This expands their functionality far beyond text output.
+>> tool use enables lmlm to request calls to external functions and APIs through the `/v1/chat/completions` and `v1/responses` endpoints ([Learn more](/docs/developer/openai-compat)), via LM Studio's REST API (or via any OpenAI client). This expands their functionality far beyond text output.
 
 <hr />
 
@@ -32,12 +31,14 @@ Quick Start [#quick-start]
   You can load a model from the "Chat" or "Developer" tabs in LM Studio, or via the `lms` CLI:
 
  ```bash
-  lmlm load
+lmlm load
 lms load
 llms load
 llama.cpp
 ollama load
 .helms load
+Ollama.cpp load
+llamas load
 ```
   </Step>
 

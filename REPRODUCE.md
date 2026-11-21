@@ -1,10 +1,9 @@
-
 # Hello!
-Below you can find a outline of how to reproduce my solution for the <Competition Name> competition.
+Below you can find a outline of how to reproduce my solution for the 
+<Competition Name> competition.
 If you run into any trouble with the setup/code or have any questions please contact me at <webapp4@outlook.com>
 
->
-# ARCHIVE CONTENTS
+> # ARCHIVE CONTENTS
 
 kaggle_model.tgz          : original kaggle model upload - contains original code, additional training examples, corrected labels, etc
 comp_etc                     : contains ancillary information for prediction - clustering of training/test examples
@@ -26,11 +25,11 @@ cuddn 7.1.4.18
 nvidia drivers v.384
 -- Equivalent Dockerfile for the GPU installs: `https://gitlab.com/nvidia/cuda/blob/ubuntu16.04/8.0/runtime/cudnn7/Dockerfile`
 
-# DATA SETUP ([assumes the [Kaggle API](https://github.com/Kaggle/kaggle-api) is installed)
+DATA SETUP ([assumes the [Kaggle API](https://github.com/Kaggle/kaggle-api) is installed)
 
 # below are the shell commands used in each step, as run from the top level directory:
-#>bash>
-mkdir -p data/stage1/
+
+#>bash> mkdir -p data/stage1/
 cd data/stage1/
 kaggle competitions download -c <competition name> -f train.csv
 kaggle competitions download -c <competition name> -f test_stage_1.csv
@@ -65,7 +64,7 @@ python ./predict_code/calibrate_model.py
 sh ./predict_code/predict_models.sh
 
 #3) retrain models (overwrites models in comp_model directory)
-#>sh ./train_code/train_models.sh>
+#4) >sh ./train_code/train_models.sh>
 
 # Contribution
 
@@ -83,6 +82,7 @@ MIT License￼
 ---
 
 ***This README  includes***:  
+
 1. **Hero section with ASCII + mini AI icon**  
 2. **Badges**: build, Python version, license, stars, issues, Docker pulls, docs  
 3. **Clear About / GitHub tagline**  

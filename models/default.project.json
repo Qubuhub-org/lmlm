@@ -1,5 +1,5 @@
 {
-  "name": "ollama-rb",
+  "name": "lmkm",
   "tree": {
     "$className": "DataModel",
     "ReplicatedStorage": {

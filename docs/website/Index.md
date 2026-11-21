@@ -1,6 +1,6 @@
 # LMLM 
 
-## Local Multi-Language AI Model
+## Local Multi-functional linear Model
 
 ```.xlsl Local Multi-Language AI Model
 ██╗     ███╗   ███╗██╗     ██╗      ██████╗
@@ -10,18 +10,18 @@
 ███████╗██║ ╚═╝ ██║███████╗███████╗╚██████╔╝
 ╚══════╝╚═╝     ╚═╝╚══════╝╚══════╝ ╚═════╝
 ```
-╔═╗╔═╗╔═╗   ╔═╗╔═╗╔═╗
-║L║║M║║L║──►║M║║U║║L║
-╚═╝╚═╝╚═╝   ╚═╝╚═╝╚═╝
+╔═╗ ╔═╗ ╔═╗ ╔═╗
+║L║ ║M║ ║L║ ║M║
+╚═╝ ╚═╝ ╚═╝ ╚═╝
 
-[Local Multi-Language AI Model](https://fastai1.fast.ai)
+[Local Multi-functional linear Model](https://fastai1.fast.ai)
 
 ◉──◉──◉       ◉──◉──◉
 
 
 # About LMLM
 
-LMLM — Local Multi-Language AI Model
+LMLM — Local Multi-functional AI Model
 LMLM is your all-in-one, local AI toolkit for coding across multiple languages. Generate, analyze, and automate code directly on your machine — no cloud required. Fast, modular, and designed for developers who want AI to work with them, not somewhere else. From Python to Swift, LMLM handles it all. Build smarter, test faster, and stay fully in control.
 
 GitHub Tagline (About field):
@@ -43,7 +43,7 @@ Features
 
 # Clone the repo
 ```bash
-git clone https://github.com/Web4application/lmlm.git
+git clone https://github.com/wrb4application/lmlm.git
 cd lmlm
 # Optional: setup virtual environment
 python3 -m venv venv
@@ -68,7 +68,7 @@ lmlm prompt "Create a Python function to reverse a string"
 lmlm analyze ./my_project
 ```
 
-   ## Documentation
+ ## Documentation
    
    [lmlmstudio](file:///private/var/containers/Bundle/Application/61352102-115D-4798-934E-1E7EB868B788/stable.app/error_page_loaded.html?url=https://github.com/Web4application/lmlm/edit/main/PromptStudio.html&dontLoad=true#PromptStudio.md)![lmlmstudio](file:///private/var/containers/Bundle/Application/61352102-115D-4798-934E-1E7EB868B788/stable.app/error_page_loaded.html?url=https://github.com/Web4application/lmlm/edit/main/PromptStudio.html&dontLoad=true#PromptStudio.md?url=https://docs.ollama.com/api-reference/get-version.md) 
    
