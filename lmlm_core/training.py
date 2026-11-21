@@ -87,6 +87,7 @@ def train_from_text(
                 "validation_tokens": metrics["token_count"],
             })
         history.append(row)
+        model.train()
         interval_losses.clear()
         if checkpoint_dir is not None:
             runtime.save_checkpoint(Path(checkpoint_dir) / f"step-{step:06d}.pt")
