@@ -5,12 +5,20 @@ from pathlib import Path
 
 from .config import LMLMConfig
 from .model import LMLMModel
-from .tokenizer import BOS_TOKEN_ID, EOS_TOKEN_ID, ByteTokenizer
+from .tokenizer import (
+    BOS_TOKEN_ID,
+    EOS_TOKEN_ID,
+    BPETokenizer,
+    ByteTokenizer,
+    tokenizer_from_dict,
+)
 
 try:
     import torch
 except ImportError:
     torch = None
+
+Tokenizer = ByteTokenizer | BPETokenizer
 
 
 def _require_torch():
@@ -41,34 +49,58 @@ def resolve_device(requested: str = "auto") -> str:
 
 
 class LMLMRuntime:
-    """Owns an in-process LMLM model and performs local text generation."""
-    def __init__(self, model: LMLMModel, config: LMLMConfig, device: str) -> None:
+    """Owns an in-process LMLM model, tokenizer, and local generation loop."""
+    def __init__(
+        self,
+        model: LMLMModel,
+        config: LMLMConfig,
+        device: str,
+        tokenizer: Tokenizer | None = None,
+    ) -> None:
         self.model = model
         self.config = config
         self.device = device
-        self.tokenizer = ByteTokenizer()
+        self.tokenizer = tokenizer or ByteTokenizer()
+        if self.config.vocab_size != self.tokenizer.vocab_size:
+            raise ValueError(
+                "model vocab_size must match the active tokenizer vocabulary"
+            )
         self.model.to(device)
         self.model.eval()
 
     @classmethod
-    def create_untrained(cls, config: LMLMConfig | None = None) -> "LMLMRuntime":
+    def create_untrained(
+        cls,
+        config: LMLMConfig | None = None,
+        tokenizer: Tokenizer | None = None,
+    ) -> "LMLMRuntime":
         """Create random weights for architecture smoke tests, not useful answers."""
         _require_torch()
-        selected = config or LMLMConfig()
+        selected_tokenizer = tokenizer or ByteTokenizer()
+        selected = config or LMLMConfig(vocab_size=selected_tokenizer.vocab_size)
         device = resolve_device(selected.device)
-        return cls(LMLMModel(selected), selected, device)
+        return cls(LMLMModel(selected), selected, device, selected_tokenizer)
 
     @classmethod
     def from_checkpoint(cls, path: str | Path, device: str = "auto") -> "LMLMRuntime":
         backend = _require_torch()
         resolved = resolve_device(device)
         checkpoint = backend.load(Path(path), map_location=resolved, weights_only=True)
-        if not isinstance(checkpoint, dict) or checkpoint.get("format") != "lmlm-core-v1":
+        if not isinstance(checkpoint, dict):
+            raise ValueError("Unsupported or invalid LMLM checkpoint format")
+        checkpoint_format = checkpoint.get("format")
+        if checkpoint_format == "lmlm-core-v1":
+            tokenizer = ByteTokenizer()
+        elif checkpoint_format == "lmlm-core-v2":
+            tokenizer = tokenizer_from_dict(checkpoint.get("tokenizer", {}))
+        else:
             raise ValueError("Unsupported or invalid LMLM checkpoint format")
         config = LMLMConfig.from_dict(checkpoint["config"])
+        if config.vocab_size != tokenizer.vocab_size:
+            raise ValueError("checkpoint model and tokenizer vocabularies do not match")
         model = LMLMModel(config)
         model.load_state_dict(checkpoint["model_state"], strict=True)
-        return cls(model, config, resolved)
+        return cls(model, config, resolved, tokenizer)
 
     def save_checkpoint(self, path: str | Path) -> None:
         backend = _require_torch()
@@ -76,8 +108,9 @@ class LMLMRuntime:
         destination.parent.mkdir(parents=True, exist_ok=True)
         backend.save(
             {
-                "format": "lmlm-core-v1",
+                "format": "lmlm-core-v2",
                 "config": self.config.to_dict(),
+                "tokenizer": self.tokenizer.to_dict(),
                 "model_state": self.model.state_dict(),
             },
             destination,
@@ -112,7 +145,9 @@ class LMLMRuntime:
                 if top_k is not None:
                     count = min(top_k, next_logits.shape[-1])
                     cutoff = backend.topk(next_logits, count).values[:, -1, None]
-                    next_logits = next_logits.masked_fill(next_logits < cutoff, float("-inf"))
+                    next_logits = next_logits.masked_fill(
+                        next_logits < cutoff, float("-inf")
+                    )
                 probabilities = backend.softmax(next_logits, dim=-1)
                 next_token = backend.multinomial(probabilities, num_samples=1)
                 generated = backend.cat((generated, next_token), dim=1)

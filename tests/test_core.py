@@ -1,17 +1,29 @@
 import importlib.util
+import tempfile
 import unittest
+from pathlib import Path
 
 from lmlm_core.config import LMLMConfig
-from lmlm_core.tokenizer import ByteTokenizer, BOS_TOKEN_ID, EOS_TOKEN_ID
+from lmlm_core.tokenizer import (
+    BASE_VOCAB_SIZE,
+    BOS_TOKEN_ID,
+    EOS_TOKEN_ID,
+    BPETokenizer,
+    ByteTokenizer,
+    tokenizer_from_dict,
+)
 
 
 class ConfigTests(unittest.TestCase):
-    def test_default_vocabulary_matches_tokenizer(self):
+    def test_default_vocabulary_matches_byte_tokenizer(self):
         self.assertEqual(LMLMConfig().vocab_size, ByteTokenizer.vocab_size)
 
-    def test_tokenizer_vocabulary_mismatch_is_rejected(self):
+    def test_dynamic_vocabulary_is_supported(self):
+        self.assertEqual(LMLMConfig(vocab_size=512).vocab_size, 512)
+
+    def test_vocabulary_below_base_size_is_rejected(self):
         with self.assertRaises(ValueError):
-            LMLMConfig(vocab_size=512)
+            LMLMConfig(vocab_size=BASE_VOCAB_SIZE - 1)
 
     def test_invalid_head_dimension_is_rejected(self):
         with self.assertRaises(ValueError):
@@ -49,6 +61,34 @@ class TokenizerTests(unittest.TestCase):
             self.tokenizer.encode(123)
 
 
+class BPETokenizerTests(unittest.TestCase):
+    def setUp(self):
+        self.text = "LMLM banana banana banana — Nigeria Nigeria."
+
+    def test_training_learns_merges_and_round_trips(self):
+        tokenizer = BPETokenizer.train(
+            self.text, vocab_size=280, min_frequency=2
+        )
+        self.assertGreater(tokenizer.vocab_size, BASE_VOCAB_SIZE)
+        self.assertEqual(tokenizer.decode(tokenizer.encode(self.text)), self.text)
+
+    def test_training_is_deterministic(self):
+        first = BPETokenizer.train(self.text, vocab_size=280, min_frequency=2)
+        second = BPETokenizer.train(self.text, vocab_size=280, min_frequency=2)
+        self.assertEqual(first.merges, second.merges)
+
+    def test_tokenizer_metadata_round_trip(self):
+        tokenizer = BPETokenizer.train(self.text, vocab_size=275, min_frequency=2)
+        restored = tokenizer_from_dict(tokenizer.to_dict())
+        self.assertIsInstance(restored, BPETokenizer)
+        self.assertEqual(restored.merges, tokenizer.merges)
+        self.assertEqual(restored.decode(restored.encode(self.text)), self.text)
+
+    def test_invalid_merge_vocabulary_is_rejected(self):
+        with self.assertRaises(ValueError):
+            BPETokenizer([(999, 1000)])
+
+
 @unittest.skipUnless(importlib.util.find_spec("torch"), "PyTorch runtime is optional")
 class ModelTests(unittest.TestCase):
     def test_forward_returns_logits_and_loss(self):
@@ -64,6 +104,32 @@ class ModelTests(unittest.TestCase):
         logits, loss = model(inputs, targets)
         self.assertEqual(tuple(logits.shape), (2, 8, config.vocab_size))
         self.assertTrue(torch.isfinite(loss).item())
+
+    def test_bpe_checkpoint_preserves_tokenizer(self):
+        from lmlm_core.runtime import LMLMRuntime
+
+        text = "LMLM local model " * 12
+        tokenizer = BPETokenizer.train(text, vocab_size=275, min_frequency=2)
+        config = LMLMConfig(
+            vocab_size=tokenizer.vocab_size,
+            context_length=8,
+            hidden_size=16,
+            num_layers=1,
+            num_heads=4,
+            dropout=0,
+        )
+        runtime = LMLMRuntime.create_untrained(config, tokenizer)
+        with tempfile.TemporaryDirectory() as directory:
+            checkpoint = Path(directory) / "lmlm-bpe.pt"
+            runtime.save_checkpoint(checkpoint)
+            restored = LMLMRuntime.from_checkpoint(checkpoint, device="cpu")
+            self.assertIsInstance(restored.tokenizer, BPETokenizer)
+            self.assertEqual(
+                restored.tokenizer.decode(restored.tokenizer.encode(text)), text
+            )
+            self.assertTrue(
+                restored.generate("LMLM", max_new_tokens=1, top_k=8).startswith("LMLM")
+            )
 
 
 if __name__ == "__main__":
