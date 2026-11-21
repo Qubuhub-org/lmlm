@@ -1,5 +1,6 @@
 rsc.io/quote@v0.0.0-20180709162816-fe488b867524
 
+
 -- .mod --
 module rsc.io/quote
 
