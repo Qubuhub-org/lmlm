@@ -4,16 +4,13 @@ from __future__ import annotations
 from dataclasses import asdict, dataclass
 from typing import Any, Mapping
 
-BYTE_TOKENIZER_VOCAB_SIZE = 260
+BASE_VOCAB_SIZE = 260
 
 
 @dataclass(frozen=True, slots=True)
 class LMLMConfig:
-    """Configuration for a compact decoder-only transformer.
-
-    Defaults are intended for CPU experimentation, not production deployment.
-    """
-    vocab_size: int = BYTE_TOKENIZER_VOCAB_SIZE
+    """Configuration for a compact decoder-only transformer."""
+    vocab_size: int = BASE_VOCAB_SIZE
     context_length: int = 128
     hidden_size: int = 128
     num_layers: int = 2
@@ -22,10 +19,8 @@ class LMLMConfig:
     device: str = "auto"
 
     def __post_init__(self) -> None:
-        if self.vocab_size != BYTE_TOKENIZER_VOCAB_SIZE:
-            raise ValueError(
-                f"vocab_size must be {BYTE_TOKENIZER_VOCAB_SIZE} while ByteTokenizer is active"
-            )
+        if self.vocab_size < BASE_VOCAB_SIZE:
+            raise ValueError(f"vocab_size must be at least {BASE_VOCAB_SIZE}")
         for name in ("context_length", "hidden_size", "num_layers", "num_heads"):
             if getattr(self, name) <= 0:
                 raise ValueError(f"{name} must be greater than zero")

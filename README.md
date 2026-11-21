@@ -5,17 +5,19 @@ environment, or local playground. The model and its runtime are the product;
 external model registries are not the core architecture.
 
 This repository contains historical experiments and multiple language stacks.
-The new `lmlm-core` package establishes a native, local-first foundation
-without depending on a hosted model provider.
+The `lmlm-core` package establishes a native, local-first foundation without
+depending on a hosted model provider.
 
 ## Current implementation
 
-The first native core increment provides:
+The native core currently provides:
 
-- A deterministic UTF-8 byte tokenizer with reserved control tokens.
-- A validated decoder-model configuration.
+- A reversible UTF-8 byte tokenizer.
+- A deterministic byte-pair (BPE) tokenizer that learns merges from a local
+  text corpus without downloading a vocabulary.
+- A validated decoder-model configuration with tokenizer-sized vocabularies.
 - A causal decoder-only transformer implemented inside the LMLM package.
-- Local checkpoint save/load and autoregressive text generation.
+- Local checkpoint save/load, including tokenizer metadata.
 - A small-corpus training loop and command-line interface.
 - CPU execution, with optional CUDA and Apple MPS acceleration through PyTorch.
 
@@ -50,49 +52,64 @@ mkdir -p data
 printf 'LMLM is a local model. It learns from the text supplied to its trainer.\n' > data/sample.txt
 ```
 
-Initialize a configuration:
+Train with the byte tokenizer:
 
 ```bash
-lmlm init-config configs/small.json --context-length 128 --hidden-size 128
+lmlm train data/sample.txt --output artifacts/lmlm-byte.pt --steps 100
 ```
 
-Train a local checkpoint:
+Train a learned BPE vocabulary from the same local corpus:
 
 ```bash
-lmlm train data/sample.txt --output artifacts/lmlm.pt --steps 100
+lmlm train data/sample.txt --output artifacts/lmlm-bpe.pt --steps 100 \
+  --tokenizer bpe --vocab-size 512 --min-frequency 2
 ```
 
-Generate from the checkpoint:
+Generate from either checkpoint. The checkpoint contains the tokenizer
+metadata needed to encode prompts and decode generated tokens:
 
 ```bash
-lmlm generate artifacts/lmlm.pt "LMLM is"
+lmlm generate artifacts/lmlm-bpe.pt "LMLM is"
 ```
 
 The sample corpus is only for a smoke test. Useful language generation
 requires a substantially larger, curated corpus, evaluation, and a training
 plan. A randomly initialized model does not produce useful assistant output.
+The current BPE trainer is a simple deterministic implementation intended
+for small local corpora, not a high-throughput production tokenizer trainer.
 
 ## Python API
 
 ```python
-from lmlm_core import ByteTokenizer, LMLMConfig
+from lmlm_core import BPETokenizer, LMLMConfig
 from lmlm_core.runtime import LMLMRuntime
 
-tokenizer = ByteTokenizer()
-print(tokenizer.decode(tokenizer.encode("Hello, LMLM")))
-
-config = LMLMConfig(context_length=128, hidden_size=128, num_layers=2, num_heads=4)
-runtime = LMLMRuntime.create_untrained(config)
-runtime.save_checkpoint("artifacts/untrained.pt")
+corpus = "LMLM learns from local text. " * 100
+tokenizer = BPETokenizer.train(corpus, vocab_size=512, min_frequency=2)
+config = LMLMConfig(
+    vocab_size=tokenizer.vocab_size,
+    context_length=128,
+    hidden_size=128,
+    num_layers=2,
+    num_heads=4,
+)
+runtime = LMLMRuntime.create_untrained(config, tokenizer)
+runtime.save_checkpoint("artifacts/untrained-bpe.pt")
 ```
+
+An untrained model produces random output. Train it before using it for a task.
 
 ## Tests
 
-Run dependency-free core tests:
+Run dependency-free tokenizer and configuration tests:
 
 ```bash
 python -m unittest discover -s tests -v
 ```
+
+GitHub Actions also installs CPU PyTorch and smoke-tests model forward,
+byte-tokenized training, BPE-tokenized training, checkpoint reload, and
+generation.
 
 Run the existing Node API checks separately:
 
@@ -119,9 +136,10 @@ Never commit populated environment files or credentials. See
 
 ## Repository map
 
-- `lmlm_core/` — native tokenizer, configuration, model, runtime, and trainer.
+- `lmlm_core/` — native tokenizers, configuration, model, runtime, and trainer.
 - `tests/` — tests for the new core.
 - `docs/RECONSTRUCTION_STATUS.md` — findings, scope, and outstanding audit work.
+- `docs/REPOSITORY_AUDIT.md` — legacy component and provenance inventory.
 - `Lmlm/`, `Lmlm-protocol/`, `Notebooklmlm/`, `Notebookmarks/` — legacy
   experiments retained pending provenance and integration review.
 - `server.js` — existing Node API; its chat route is explicitly a mock.
@@ -131,15 +149,15 @@ Never commit populated environment files or credentials. See
 The repository contains historical assets and mixed license notices. Their
 presence is not proof of ownership or redistribution rights. Review provenance
 and licensing before packaging or redistributing them. Legacy research files
-are being inventoried before any deletion.
+are being inventoried before deletion.
 
 ## Roadmap
 
 1. Stabilize the native text core, training/evaluation loop, and checkpoint format.
-2. Design LMLM's own tokenizer and vocabulary-training pipeline.
+2. Benchmark and optimize the learned tokenizer on a representative corpus.
 3. Add memory and multimodal interfaces without delegating the core model to
    external providers.
 4. Add resource-aware CPU/GPU backends and device profiling.
 5. Integrate the runtime with the existing API only after inference contracts,
    limits, and tests are defined.
-6. Complete file provenance, licensing, dependency, and historical secret audits.
+6. Complete file provenance, licensing, and historical secret audits.
