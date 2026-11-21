@@ -47,12 +47,9 @@ or redistribution rights have not been fully established:
 - `docs/website/Index.md`: large legacy documentation page containing older
   LMLM descriptions and Ollama-oriented material. It is not linked from the
   new documentation landing page.
-- `REPRODUCE.md` and `predict_code/calibrate_model.py`: generic Kaggle
-  competition reproduction material with placeholder competition names and
-  references to training/prediction paths that are not present in the current
-  tree. They appear incomplete, but are retained pending owner confirmation.
-- `rsc.io/quote.go`: a separate Go quote-package wrapper, not part of the
-  Python model runtime. Retained pending confirmation that it is disposable.
+- `cs/lmlm/README.md`: legacy project notes with old naming and mixed provider
+  references. Retained because it contains LMLM-specific material that may be
+  worth reconciling rather than deleting wholesale.
 - `LICENSE.txt`: contains React copyright/license snippets, not a clear
   repository-wide license. The repository metadata currently reports no
   recognized SPDX license. No project license has been inferred or assigned.
