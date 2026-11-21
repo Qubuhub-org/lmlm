@@ -3,6 +3,7 @@ from __future__ import annotations
 
 import hashlib
 import json
+import math
 import tempfile
 from pathlib import Path
 from typing import Any
@@ -27,7 +28,7 @@ def split_text(
     Tokenizers must be fitted only on the returned training segment.
     """
     ratios = (train_ratio, validation_ratio, test_ratio)
-    if any(value <= 0 or value >= 1 for value in ratios):
+    if any(not math.isfinite(value) or value <= 0 or value >= 1 for value in ratios):
         raise ValueError("each split ratio must be between 0 and 1")
     if abs(sum(ratios) - 1.0) > 1e-8:
         raise ValueError("train, validation, and test ratios must sum to 1")
@@ -45,6 +46,22 @@ def split_text(
 
 def _sha256(text: str) -> str:
     return hashlib.sha256(text.encode("utf-8")).hexdigest()
+
+
+def _with_bits_per_byte(runtime: LMLMRuntime, text: str, metrics: dict[str, Any]) -> dict[str, Any]:
+    """Add tokenizer-independent cross-entropy normalized by scored UTF-8 bytes."""
+    token_ids = runtime.tokenizer.encode(text)
+    scored_bytes = sum(
+        runtime.tokenizer.token_byte_length(token_id) for token_id in token_ids[1:]
+    )
+    if scored_bytes <= 0:
+        raise ValueError("evaluation text must contain scored UTF-8 payload bytes")
+    result = dict(metrics)
+    result["bits_per_byte"] = (
+        metrics["loss"] * metrics["token_count"] / scored_bytes / math.log(2)
+    )
+    result["scored_utf8_bytes"] = scored_bytes
+    return result
 
 
 def run_benchmark(
@@ -157,8 +174,12 @@ def run_benchmark(
                 eval_every=eval_every,
             )
             runtime = LMLMRuntime.from_checkpoint(checkpoint, device=device)
-            validation_metrics = evaluate_file(runtime, validation_file)
-            test_metrics = evaluate_file(runtime, test_file)
+            validation_metrics = _with_bits_per_byte(
+                runtime, validation_text, evaluate_file(runtime, validation_file)
+            )
+            test_metrics = _with_bits_per_byte(
+                runtime, test_text, evaluate_file(runtime, test_file)
+            )
             results[kind] = {
                 "tokenizer": kind,
                 "vocab_size": tokenizer.vocab_size,
@@ -190,9 +211,9 @@ def run_benchmark(
         },
         "runs": results,
         "comparison_note": (
-            "Compare perplexity only within the same tokenizer and evaluation "
-            "corpus. Byte and BPE token counts/perplexities are not directly "
-            "comparable because their token units differ."
+            "Perplexity and token counts are tokenizer-dependent. Compare byte "
+            "and BPE runs using bits_per_byte on the identical held-out text; "
+            "compare perplexity only within the same tokenizer."
         ),
     }
     (destination / "benchmark.json").write_text(
