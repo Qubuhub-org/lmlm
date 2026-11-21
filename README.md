@@ -13,26 +13,22 @@ depending on a hosted model provider.
 The native core currently provides:
 
 - A reversible UTF-8 byte tokenizer.
-- A deterministic byte-pair (BPE) tokenizer that learns merges from a local
-  text corpus without downloading a vocabulary.
-- A validated decoder-model configuration with tokenizer-sized vocabularies.
-- A causal decoder-only transformer implemented inside the LMLM package.
+- A deterministic byte-pair (BPE) tokenizer trained from local text.
+- A validated decoder-only transformer with tokenizer-sized vocabularies.
 - Local checkpoint save/load, including tokenizer metadata.
-- A small-corpus training loop and command-line interface.
+- Small-corpus training and a command-line interface.
+- Deterministic next-token evaluation with cross-entropy and perplexity.
 - CPU execution, with optional CUDA and Apple MPS acceleration through PyTorch.
 
-**Status:** this is an experimental text-only baseline. It is not yet a complete
+**Status:** experimental text-only baseline. This is not yet a complete
 multimodal model, and no production-trained checkpoint is included. The
 existing Node `/api/chat` endpoint remains a mock and is not connected to this
 neural runtime.
 
-## Requirements
+## Requirements and installation
 
 - Python 3.10 or newer.
-- PyTorch 2.2 or newer for model training and inference.
-- CPU is sufficient for architecture experiments; a supported GPU is optional.
-
-Install the core in editable mode:
+- PyTorch 2.2 or newer for training, inference, and evaluation.
 
 ```bash
 python -m venv .venv
@@ -41,123 +37,133 @@ python -m pip install --upgrade pip
 python -m pip install -e ".[runtime]"
 ```
 
-On Windows, activate the environment with `.venv\\Scripts\\activate`.
-
 ## Quick start
 
-Create a small local corpus (at least 129 UTF-8 bytes for the default context):
+Create a local UTF-8 corpus with enough content for the configured context:
 
 ```bash
 mkdir -p data
-printf 'LMLM is a local model. It learns from the text supplied to its trainer.\n' > data/sample.txt
+printf 'LMLM is a local model. It learns from local text.\n' > data/sample.txt
 ```
 
-Train with the byte tokenizer:
+Train a byte-tokenized model:
 
 ```bash
 lmlm train data/sample.txt --output artifacts/lmlm-byte.pt --steps 100
 ```
 
-Train a learned BPE vocabulary from the same local corpus:
+Or train a BPE vocabulary from the same local corpus:
 
 ```bash
 lmlm train data/sample.txt --output artifacts/lmlm-bpe.pt --steps 100 \
   --tokenizer bpe --vocab-size 512 --min-frequency 2
 ```
 
-Generate from either checkpoint. The checkpoint contains the tokenizer
-metadata needed to encode prompts and decode generated tokens:
+Generate locally:
 
 ```bash
 lmlm generate artifacts/lmlm-bpe.pt "LMLM is"
 ```
 
-The sample corpus is only for a smoke test. Useful language generation
-requires a substantially larger, curated corpus, evaluation, and a training
-plan. A randomly initialized model does not produce useful assistant output.
-The current BPE trainer is a simple deterministic implementation intended
-for small local corpora, not a high-throughput production tokenizer trainer.
+Evaluate on a held-out UTF-8 text file:
+
+```bash
+lmlm evaluate artifacts/lmlm-bpe.pt data/validation.txt
+```
+
+Evaluation reports mean next-token cross-entropy loss, perplexity, the number
+of scored target tokens, and the number of evaluation windows. The evaluator
+uses fixed contiguous windows, scores every next-token target exactly once,
+and does not shuffle or upload the corpus. Use a validation corpus that was
+not used for training; otherwise the result is not a meaningful generalization
+estimate. Perplexity is only comparable across models evaluated on the same
+tokenization and dataset.
+
+## Reproducible benchmark pipeline
+
+Run a local byte/BPE comparison from one UTF-8 corpus:
+
+```bash
+lmlm benchmark data/corpus.txt --output-dir artifacts/benchmark \
+  --steps 500 --eval-every 50 --seed 17 --device cpu
+```
+
+The command makes deterministic, contiguous, non-overlapping train/validation/test
+character splits (80/10/10 by default). The BPE vocabulary is fitted on the
+training split only. Validation data is used for periodic monitoring; the test
+split is evaluated only after training and is not used for model selection.
+The split manifest records character counts and SHA-256 hashes without copying
+the source corpus into the output directory.
+
+Each tokenizer run writes:
+
+- `final.pt` — final model checkpoint.
+- `checkpoints/step-*.pt` — periodic model checkpoints at validation intervals.
+- `history.jsonl` — interval training loss and validation loss/perplexity.
+- Validation and held-out test metrics in the top-level `benchmark.json`.
+
+The report includes cross-entropy, perplexity, scored token counts, and
+**bits-per-byte**. Bits-per-byte normalizes next-token negative log likelihood
+by the UTF-8 bytes represented by scored target tokens, making byte/BPE
+comparisons more meaningful. Perplexity and token counts remain tokenizer-
+dependent and should not be compared directly across different tokenizers.
+Use the same corpus, split ratios, model dimensions, training steps, and seed
+when comparing runs. The default split is a simple contiguous character split;
+for multi-document datasets, prepare document-level splits yourself to prevent
+near-duplicate or related documents crossing split boundaries.
+
+All source text and outputs stay local. The benchmark does not upload corpora
+or call remote inference providers.
+
+## Reproducibility
+
+Training uses a configurable random seed (default `17`):
+
+```bash
+lmlm train data/train.txt --output artifacts/model.pt --seed 17
+```
+
+This seeds PyTorch's random generator. Exact bit-for-bit reproducibility across
+different devices, PyTorch versions, and accelerator kernels is not guaranteed.
 
 ## Python API
 
 ```python
-from lmlm_core import BPETokenizer, LMLMConfig
+from lmlm_core.evaluate import evaluate_file
 from lmlm_core.runtime import LMLMRuntime
 
-corpus = "LMLM learns from local text. " * 100
-tokenizer = BPETokenizer.train(corpus, vocab_size=512, min_frequency=2)
-config = LMLMConfig(
-    vocab_size=tokenizer.vocab_size,
-    context_length=128,
-    hidden_size=128,
-    num_layers=2,
-    num_heads=4,
-)
-runtime = LMLMRuntime.create_untrained(config, tokenizer)
-runtime.save_checkpoint("artifacts/untrained-bpe.pt")
+runtime = LMLMRuntime.from_checkpoint("artifacts/model.pt", device="cpu")
+metrics = evaluate_file(runtime, "data/validation.txt")
+print(metrics)
 ```
 
 An untrained model produces random output. Train it before using it for a task.
+The current BPE trainer is a simple deterministic implementation intended for
+small local corpora, not a high-throughput production tokenizer trainer.
 
 ## Tests
-
-Run dependency-free tokenizer and configuration tests:
 
 ```bash
 python -m unittest discover -s tests -v
 ```
 
-GitHub Actions also installs CPU PyTorch and smoke-tests model forward,
-byte-tokenized training, BPE-tokenized training, checkpoint reload, and
-generation.
-
-Run the existing Node API checks separately:
-
-```bash
-npm install
-npm run check
-npm test
-```
+GitHub Actions also runs CPU PyTorch training, checkpoint, generation, and
+evaluation tests, plus the existing Node API checks and Docker build.
 
 The new Python core and legacy Python experiments have separate dependency
 sets. Do not install the root legacy `requirements.txt` into the core
-environment; many of its pins come from older Python ecosystems.
+environment; many pins are from older Python ecosystems.
 
-## Environment variables
+## Security and repository map
 
-The optional legacy Gemini adapter reads `GEMINI_API_KEY` from the process
-environment. Set it in the shell or an approved secret manager before running
-that adapter. The core model does not require this key or call Gemini.
-`.env.example` documents the variable name; it is not an automatic dotenv
-loader.
+The core model does not require a hosted provider key. Legacy provider
+adapters remain separate. Never commit populated environment files or
+credentials; see [SECURITY.md](SECURITY.md).
 
-Never commit populated environment files or credentials. See
-[SECURITY.md](SECURITY.md).
+- `lmlm_core/` — native tokenizer, model, runtime, trainer, and evaluator.
+- `tests/` — core tests.
+- `docs/RECONSTRUCTION_STATUS.md` — reconstruction status and limitations.
+- `docs/REPOSITORY_AUDIT.md` — legacy asset and provenance inventory.
+- `server.js` — existing Node API; its chat route is a mock.
 
-## Repository map
-
-- `lmlm_core/` — native tokenizers, configuration, model, runtime, and trainer.
-- `tests/` — tests for the new core.
-- `docs/RECONSTRUCTION_STATUS.md` — findings, scope, and outstanding audit work.
-- `docs/REPOSITORY_AUDIT.md` — legacy component and provenance inventory.
-- `Lmlm/`, `Lmlm-protocol/`, `Notebooklmlm/`, `Notebookmarks/` — legacy
-  experiments retained pending provenance and integration review.
-- `server.js` — existing Node API; its chat route is explicitly a mock.
-
-## Ownership and legacy assets
-
-The repository contains historical assets and mixed license notices. Their
-presence is not proof of ownership or redistribution rights. Review provenance
-and licensing before packaging or redistributing them. Legacy research files
-are being inventoried before deletion.
-
-## Roadmap
-
-1. Stabilize the native text core, training/evaluation loop, and checkpoint format.
-2. Benchmark and optimize the learned tokenizer on a representative corpus.
-3. Add memory and multimodal interfaces without delegating the core model to
-   external providers.
-4. Add resource-aware CPU/GPU backends and device profiling.
-5. Integrate the runtime with the existing API only after inference contracts,
-   limits, and tests are defined.
-6. Complete file provenance, licensing, and historical secret audits.
+Historical assets remain pending provenance and licensing review.
