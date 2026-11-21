@@ -16,11 +16,13 @@ permissions:
 
 jobs:
   validate:
-    name: Validate static documentation
+    name: Validate LMLM documentation
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Require documentation entry point
+      - name: Require LMLM documentation entry point
         run: test -s docs/index.html
-      - name: Require source documentation
-        run: test -s docs/indexcontent.md
+      - name: Require reconstruction status
+        run: test -s docs/RECONSTRUCTION_STATUS.md
+      - name: Verify page identifies the project correctly
+        run: grep -q "Large Multimodal" docs/index.html
