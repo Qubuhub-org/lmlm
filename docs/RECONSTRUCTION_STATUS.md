@@ -66,6 +66,8 @@ production model exists.
 
 ## Not removed in this increment
 
-No binary, archive, notebook, dataset, imported source tree, or legacy
-experiment has been deleted. Those items need provenance, license, purpose,
-and dependency checks before removal.
+No binary, notebook, dataset, or imported source tree has been deleted. The
+confirmed unrelated Kaggle reproduction template, its empty predictor, and an
+unreferenced Go quote-module sample were removed. Remaining binary, archive,
+notebook, dataset, and legacy experiment files still need provenance, license,
+purpose, and dependency checks before removal.
