@@ -115,7 +115,7 @@ def train_from_text(
         history_file = Path(history_path)
         history_file.parent.mkdir(parents=True, exist_ok=True)
         history_file.write_text(
-            "".join(json.dumps(row, sort_keys=True) + "\\n" for row in history),
+            "".join(json.dumps(row, sort_keys=True) + "\n" for row in history),
             encoding="utf-8",
         )
     return destination
