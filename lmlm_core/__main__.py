@@ -147,6 +147,41 @@ def main() -> None:
         runtime = LMLMRuntime.from_checkpoint(args.checkpoint, device=args.device)
         result = evaluate_file(runtime, args.corpus)
         print(json.dumps(result, indent=2, sort_keys=True))
+    elif args.command == "benchmark":
+        tokenizer_types = (
+            ("byte", "bpe") if args.tokenizer == "both" else (args.tokenizer,)
+        )
+        report = run_benchmark(
+            args.corpus,
+            args.output_dir,
+            tokenizer_types=tokenizer_types,
+            train_ratio=args.train_ratio,
+            validation_ratio=args.validation_ratio,
+            test_ratio=args.test_ratio,
+            steps=args.steps,
+            batch_size=args.batch_size,
+            learning_rate=args.learning_rate,
+            eval_every=args.eval_every,
+            seed=args.seed,
+            context_length=args.context_length,
+            hidden_size=args.hidden_size,
+            layers=args.layers,
+            heads=args.heads,
+            device=args.device,
+            vocab_size=args.vocab_size,
+            min_frequency=args.min_frequency,
+        )
+        print(json.dumps({
+            "report": str(args.output_dir / "benchmark.json"),
+            "runs": {
+                name: {
+                    "validation_perplexity": result["validation"]["perplexity"],
+                    "test_perplexity": result["test"]["perplexity"],
+                    "vocab_size": result["vocab_size"],
+                }
+                for name, result in report["runs"].items()
+            },
+        }, indent=2, sort_keys=True))
 
 
 if __name__ == "__main__":
