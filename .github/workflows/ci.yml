@@ -23,7 +23,7 @@ jobs:
         run: python -m unittest discover -s tests -v
 
   python-neural-smoke:
-    name: Native LMLM CPU training and inference smoke test
+    name: Native LMLM CPU training, inference, and repository-docs benchmark
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -46,6 +46,37 @@ jobs:
         run: python -m lmlm_core train /tmp/lmlm-corpus.txt --output /tmp/lmlm-bpe.pt --steps 2 --batch-size 2 --context-length 8 --hidden-size 16 --layers 1 --heads 4 --tokenizer bpe --vocab-size 280 --min-frequency 2
       - name: Reload BPE checkpoint and generate
         run: python -m lmlm_core generate /tmp/lmlm-bpe.pt "LMLM" --max-new-tokens 2 --top-k 8
+      - name: Assemble repository documentation corpus
+        run: cat README.md docs/RECONSTRUCTION_STATUS.md project.md > /tmp/lmlm-repository-docs.txt
+      - name: Run byte/BPE benchmark on repository documentation
+        run: >-
+          python -m lmlm_core benchmark /tmp/lmlm-repository-docs.txt
+          --output-dir artifacts/repository-docs-baseline
+          --steps 30 --batch-size 4 --eval-every 10
+          --seed 17 --context-length 64 --hidden-size 32
+          --layers 1 --heads 4 --device cpu
+          --vocab-size 320 --min-frequency 2
+      - name: Print benchmark metrics
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          report = json.loads(Path("artifacts/repository-docs-baseline/benchmark.json").read_text())
+          print("Corpus:", report["source_name"])
+          print("SHA-256:", report["source_sha256"])
+          print("Split characters:", {k: v["characters"] for k, v in report["splits"]["splits"].items()})
+          for name, result in report["runs"].items():
+              print(f"[{name}] vocab={result['vocab_size']} steps={result['steps']}")
+              for split in ("validation", "test"):
+                  m = result[split]
+                  print(f"  {split}: loss={m['loss']:.6f} perplexity={m['perplexity']:.6f} bits_per_byte={m['bits_per_byte']:.6f}")
+          PY
+      - name: Upload benchmark report and checkpoints
+        uses: actions/upload-artifact@v4
+        with:
+          name: lmlm-repository-docs-baseline
+          path: artifacts/repository-docs-baseline/
+          if-no-files-found: error
 
   node-api:
     name: Node API tests
